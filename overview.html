@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>focus.fm — Overview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="overview.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-text"><span class="brand-red">focus</span>.fm</span>
+      <div class="topbar-divider"></div>
+      <img src="assets/icon-logo-mark.svg" alt="" class="brand-mark" />
+    </div>
+    <div class="topbar-user">
+      <div class="user-avatar" id="user-avatar"></div>
+      <span class="user-name" id="topbar-username"></span>
+      <img src="assets/icon-as.svg" alt="" class="user-chevron" />
+    </div>
+  </header>
+
+  <div class="app-shell">
+
+    <nav class="sidenav">
+      <a class="sidenav-item" data-page="overview" href="overview.html">
+        <img src="assets/icon-overview.svg" class="sidenav-icon" alt="" />
+        <span>Overview</span>
+      </a>
+      <a class="sidenav-item" data-page="scrobbles" href="scrobbles.html">
+        <img src="assets/icon-scrobbles.svg" class="sidenav-icon" alt="" />
+        <span>Scrobbles</span>
+      </a>
+      <a class="sidenav-item" data-page="grid-generator" href="grid-generator.html">
+        <img src="assets/icon-grid.svg" class="sidenav-icon" alt="" />
+        <span>Grid Generator</span>
+      </a>
+      <a class="sidenav-item" data-page="community" href="community.html">
+        <img src="assets/icon-community.svg" class="sidenav-icon" alt="" />
+        <span>Community</span>
+      </a>
+    </nav>
+
+    <div class="content-area">
+
+      <!-- Sub-header -->
+      <div class="ov-subheader">
+        <div class="ov-subheader-left">
+          <h1 class="ov-title" id="ov-title">username&rsquo;s focus.fm</h1>
+          <p class="ov-meta">
+            03/01/2026 &ndash; 03/31/2026 &nbsp;&bull;&nbsp;
+            <a id="ov-scrobble-link" href="scrobbles.html">780 scrobbles</a>
+          </p>
+        </div>
+        <div class="ov-subheader-right">
+          <div class="ov-date-picker" id="ov-date-picker">
+            <button class="ov-date-btn" id="ov-date-btn" type="button">
+              <img src="assets/icon-calendar.svg" alt="" class="ov-date-btn-icon" />
+              <span class="ov-date-btn-label" id="ov-date-label">Month</span>
+              <img src="assets/icon-as.svg" alt="" class="ov-date-btn-chevron" />
+            </button>
+            <ul class="ov-date-menu" id="ov-date-menu">
+              <li data-value="week">Week</li>
+              <li data-value="month" class="selected">Month</li>
+              <li data-value="3m">3 Months</li>
+              <li data-value="6m">6 Months</li>
+              <li data-value="12m">12 Months</li>
+              <li data-value="all">All Time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <main class="main-content">
+        <div class="ov-content">
+
+          <!-- ── Row 1: Top 5 cards ── -->
+          <div class="ov-row">
+
+            <!-- Top 5 Albums -->
+            <div class="ov-card top5-card">
+              <div class="top5-head">
+                <div class="top5-head-left">
+                  <img src="assets/icon-album.svg" alt="" class="top5-icon" />
+                  <span class="top5-title">Top 5 Albums</span>
+                </div>
+                <span class="top5-total">191 Total</span>
+              </div>
+              <img src="assets/icon-card-wave.svg" alt="" class="top5-wave" />
+              <ul class="top5-list">
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Ripple</p>
+                    <p class="top5-secondary">Grateful Dead</p>
+                    <p class="top5-tertiary">47 scrobbles</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">The College Dropout</p>
+                    <p class="top5-secondary">Kanye West</p>
+                    <p class="top5-tertiary">32 scrobbles</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Everything All The Time</p>
+                    <p class="top5-secondary">Band of Horses</p>
+                    <p class="top5-tertiary">28 scrobbles</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Father of the Bride</p>
+                    <p class="top5-secondary">Vampire Weekend</p>
+                    <p class="top5-tertiary">26 scrobbles</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Born &amp; Raised</p>
+                    <p class="top5-secondary">John Mayer</p>
+                    <p class="top5-tertiary">24 scrobbles</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Top 5 Artists -->
+            <div class="ov-card top5-card">
+              <div class="top5-head">
+                <div class="top5-head-left">
+                  <img src="assets/icon-artists.svg" alt="" class="top5-icon" />
+                  <span class="top5-title">Top 5 Artists</span>
+                </div>
+                <span class="top5-total">281 Total</span>
+              </div>
+              <img src="assets/icon-card-wave.svg" alt="" class="top5-wave" />
+              <ul class="top5-list">
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Vampire Weekend</p>
+                    <p class="top5-secondary">107 scrobbles</p>
+                    <p class="top5-tertiary">#1 overall</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">The White Stripes</p>
+                    <p class="top5-secondary">98 scrobbles</p>
+                    <p class="top5-tertiary">#17 overall</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">The Weeknd</p>
+                    <p class="top5-secondary">56 scrobbles</p>
+                    <p class="top5-tertiary">#68 overall</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Wilco</p>
+                    <p class="top5-secondary">40 scrobbles</p>
+                    <p class="top5-tertiary">#3 overall</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Geese</p>
+                    <p class="top5-secondary">23 scrobbles</p>
+                    <p class="top5-tertiary">#80 overall</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Top 5 Tracks -->
+            <div class="ov-card top5-card">
+              <div class="top5-head">
+                <div class="top5-head-left">
+                  <img src="assets/icon-track.svg" alt="" class="top5-icon" />
+                  <span class="top5-title">Top 5 Tracks</span>
+                </div>
+                <span class="top5-total">780 Total</span>
+              </div>
+              <img src="assets/icon-card-wave.svg" alt="" class="top5-wave" />
+              <ul class="top5-list">
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Proud</p>
+                    <p class="top5-secondary">Alex G</p>
+                    <p class="top5-tertiary">20 scrobbles</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Meet Me In The City</p>
+                    <p class="top5-secondary">Hurray for the Riff Raff</p>
+                    <p class="top5-tertiary">12 scrobbles</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Crowbar</p>
+                    <p class="top5-secondary">Waxahatchee</p>
+                    <p class="top5-tertiary">12 scrobbles</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Location</p>
+                    <p class="top5-secondary">Playboi Carti</p>
+                    <p class="top5-tertiary">8 scrobbles</p>
+                  </div>
+                </li>
+                <li class="top5-item">
+                  <div class="top5-thumb"></div>
+                  <div class="top5-info">
+                    <p class="top5-name">Mary</p>
+                    <p class="top5-secondary">Big Thief</p>
+                    <p class="top5-tertiary">6 scrobbles</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+          </div><!-- /ov-row top5 -->
+
+          <!-- ── Banner CTA ── -->
+          <a class="ov-banner" href="grid-generator.html">
+            <img src="assets/icon-grid-cta.svg" alt="" class="banner-icon" />
+            <div class="banner-body">
+              <p class="banner-heading">Visualize your top listening trends into an album grid</p>
+              <p class="banner-sub">Create multi-layout grids based on your listening across any time period &ndash; click here to get started!</p>
+            </div>
+            <img src="assets/icon-arrow-right.svg" alt="" class="banner-arrow" />
+          </a>
+
+          <!-- ── Listening Trend ── -->
+          <div class="ov-card ov-trend-card">
+            <div class="card-head">
+              <img src="assets/icon-trend.svg" alt="" class="card-head-icon" />
+              <span class="card-head-title">Listening Trend</span>
+            </div>
+            <div class="chart-wrapper">
+              <svg class="chart-svg" viewBox="0 0 1060 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#d92323" stop-opacity="0.18"/>
+                    <stop offset="100%" stop-color="#d92323" stop-opacity="0.01"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Horizontal grid lines -->
+                <line x1="42" y1="12"  x2="1060" y2="12"  stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="42" y1="52"  x2="1060" y2="52"  stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="42" y1="92"  x2="1060" y2="92"  stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="42" y1="132" x2="1060" y2="132" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="42" y1="170" x2="1060" y2="170" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="4 4"/>
+
+                <!-- Y-axis labels -->
+                <text x="38" y="16"  text-anchor="end" font-size="11" fill="#525252" font-family="system-ui,sans-serif">200</text>
+                <text x="38" y="56"  text-anchor="end" font-size="11" fill="#525252" font-family="system-ui,sans-serif">150</text>
+                <text x="38" y="96"  text-anchor="end" font-size="11" fill="#525252" font-family="system-ui,sans-serif">100</text>
+                <text x="38" y="136" text-anchor="end" font-size="11" fill="#525252" font-family="system-ui,sans-serif">50</text>
+                <text x="38" y="174" text-anchor="end" font-size="11" fill="#525252" font-family="system-ui,sans-serif">0</text>
+
+                <!-- X-axis date labels -->
+                <text x="42"   y="188" text-anchor="middle" font-size="11" fill="#525252" font-family="system-ui,sans-serif">03/01</text>
+                <text x="294"  y="188" text-anchor="middle" font-size="11" fill="#525252" font-family="system-ui,sans-serif">03/08</text>
+                <text x="551"  y="188" text-anchor="middle" font-size="11" fill="#525252" font-family="system-ui,sans-serif">03/15</text>
+                <text x="806"  y="188" text-anchor="middle" font-size="11" fill="#525252" font-family="system-ui,sans-serif">03/22</text>
+                <text x="1058" y="188" text-anchor="middle" font-size="11" fill="#525252" font-family="system-ui,sans-serif">03/29</text>
+
+                <!-- Filled area -->
+                <path d="
+                  M 42,170
+                  L 42,68
+                  C 82,42  96,22  124,22
+                  C 160,22  172,84  200,84
+                  C 242,84  266,76  310,76
+                  C 346,76  358,96  382,96
+                  C 422,96  434,80  458,80
+                  C 512,80  526,52  566,52
+                  C 606,52  620,40  640,40
+                  C 676,40  690,64  714,64
+                  C 760,64  778,56  824,56
+                  C 860,56  874,48  898,48
+                  C 934,48  950,52  972,52
+                  C 1018,52  1036,44  1058,44
+                  L 1058,170
+                  Z
+                " fill="url(#areaGrad)"/>
+
+                <!-- Line -->
+                <path d="
+                  M 42,68
+                  C 82,42  96,22  124,22
+                  C 160,22  172,84  200,84
+                  C 242,84  266,76  310,76
+                  C 346,76  358,96  382,96
+                  C 422,96  434,80  458,80
+                  C 512,80  526,52  566,52
+                  C 606,52  620,40  640,40
+                  C 676,40  690,64  714,64
+                  C 760,64  778,56  824,56
+                  C 860,56  874,48  898,48
+                  C 934,48  950,52  972,52
+                  C 1018,52  1036,44  1058,44
+                " fill="none" stroke="#d92323" stroke-width="2"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- ── Row 2: Trending Artists + Quick Stats ── -->
+          <div class="ov-row">
+
+            <!-- Trending Artists -->
+            <div class="ov-card artists-card">
+              <div class="card-head">
+                <img src="assets/icon-trending-artists.svg" alt="" class="card-head-icon" />
+                <span class="card-head-title">Trending Artists for Your Top Genres</span>
+              </div>
+              <div class="genre-filter">
+                <button class="genre-btn active" type="button">Psychedelic Rock</button>
+                <button class="genre-btn" type="button">Jam Band</button>
+                <button class="genre-btn" type="button">Indie Rock</button>
+                <button class="genre-btn" type="button">Hip Hop</button>
+              </div>
+              <ul class="artist-list">
+                <li class="artist-item">
+                  <div class="artist-thumb"></div>
+                  <div class="artist-info">
+                    <p class="artist-name">Tame Impala</p>
+                    <p class="artist-desc">Tame Impala is the psychedelic music project of Australian multi-instrumentalist Kevin Parker, blending rock, pop, and electronic sounds with lush, dreamy production.</p>
+                  </div>
+                </li>
+                <li class="artist-item">
+                  <div class="artist-thumb"></div>
+                  <div class="artist-info">
+                    <p class="artist-name">Pink Floyd</p>
+                    <p class="artist-desc">Pink Floyd are an English rock band formed in London in 1965 by Syd Barrett, Nick Mason, Roger Waters, and Richard Wright, pioneers of psychedelic and progressive rock.</p>
+                  </div>
+                </li>
+                <li class="artist-item">
+                  <div class="artist-thumb"></div>
+                  <div class="artist-info">
+                    <p class="artist-name">The Doors</p>
+                    <p class="artist-desc">The Doors was an American rock band formed in Los Angeles in 1965, consisting of vocalist Jim Morrison, keyboardist Ray Manzarek, guitarist Robby Krieger, and drummer John Densmore.</p>
+                  </div>
+                </li>
+                <li class="artist-item">
+                  <div class="artist-thumb"></div>
+                  <div class="artist-info">
+                    <p class="artist-name">Ghost</p>
+                    <p class="artist-desc">Ghost is a Swedish rock band formed in Linköping in 2006, known for their theatrical performances, occult imagery, and melodic hard rock sound.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="ov-card stats-card">
+              <div class="card-head">
+                <img src="assets/icon-trend.svg" alt="" class="card-head-icon" />
+                <span class="card-head-title">Quick Stats</span>
+              </div>
+              <div class="stats-inner">
+
+                <!-- Time Spent Listening -->
+                <div class="stat-group">
+                  <div class="stat-group-header">Time Spent Listening</div>
+                  <div class="stat-grid">
+                    <div class="stat-item">
+                      <p class="stat-label">Avg. Scrobbles Per Day</p>
+                      <div class="stat-value-row">
+                        <p class="stat-value">61 / day</p>
+                        <span class="stat-badge stat-badge--down"><span class="stat-badge-arrow">↓</span> 8</span>
+                      </div>
+                    </div>
+                    <div class="stat-item">
+                      <p class="stat-label">Overall Listening Time</p>
+                      <div class="stat-value-row">
+                        <p class="stat-value">1d, 14 hrs</p>
+                        <span class="stat-badge stat-badge--up"><span class="stat-badge-arrow">↑</span> 2 hrs</span>
+                      </div>
+                    </div>
+                    <div class="stat-item">
+                      <p class="stat-label">Highest Daily Scrobbles</p>
+                      <div class="stat-value-row">
+                        <p class="stat-value">81</p>
+                        <span class="stat-badge stat-badge--up"><span class="stat-badge-arrow">↑</span> 36</span>
+                      </div>
+                    </div>
+                    <div class="stat-item">
+                      <p class="stat-label">Most Active Day</p>
+                      <p class="stat-value">Mar 1st</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- New Finds -->
+                <div class="stat-group">
+                  <div class="stat-group-header">New Finds</div>
+                  <div class="stat-grid">
+                    <div class="stat-item">
+                      <p class="stat-label">New Albums</p>
+                      <div class="stat-value-row">
+                        <p class="stat-value">24</p>
+                        <span class="stat-badge stat-badge--up"><span class="stat-badge-arrow">↑</span> 4</span>
+                      </div>
+                    </div>
+                    <div class="stat-item">
+                      <p class="stat-label">New Artists</p>
+                      <div class="stat-value-row">
+                        <p class="stat-value">13</p>
+                        <span class="stat-badge stat-badge--down"><span class="stat-badge-arrow">↓</span> 2</span>
+                      </div>
+                    </div>
+                    <div class="stat-item">
+                      <p class="stat-label">New Tracks</p>
+                      <div class="stat-value-row">
+                        <p class="stat-value">170</p>
+                        <span class="stat-badge stat-badge--up"><span class="stat-badge-arrow">↑</span> 18</span>
+                      </div>
+                    </div>
+                    <div class="stat-item">
+                      <p class="stat-label">New Genres</p>
+                      <div class="stat-value-row">
+                        <p class="stat-value">7</p>
+                        <span class="stat-badge stat-badge--down"><span class="stat-badge-arrow">↓</span> 1</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div><!-- /ov-row bottom -->
+
+        </div><!-- /ov-content -->
+      </main>
+
+    </div><!-- /content-area -->
+  </div><!-- /app-shell -->
+
+  <script src="shell.js"></script>
+  <script>
+    // Populate username in sub-header
+    const _u = sessionStorage.getItem(‘lfm_username’);
+    if (_u) {
+      document.getElementById(‘ov-title’).textContent = `${_u}’s focus.fm`;
+    }
+
+    // Date picker dropdown
+    const picker  = document.getElementById('ov-date-picker');
+    const btn     = document.getElementById('ov-date-btn');
+    const label   = document.getElementById('ov-date-label');
+    const menu    = document.getElementById('ov-date-menu');
+
+    const dateLabels = {
+      'week': 'Week',
+      'month': 'Month',
+      '3m':   '3 Months',
+      '6m':   '6 Months',
+      '12m':  '12 Months',
+      'all':  'All Time',
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      picker.classList.toggle('open');
+    });
+
+    menu.addEventListener('click', (e) => {
+      const li = e.target.closest('li');
+      if (!li) return;
+      menu.querySelectorAll('li').forEach(el => el.classList.remove('selected'));
+      li.classList.add('selected');
+      label.textContent = dateLabels[li.dataset.value] || li.textContent;
+      picker.classList.remove('open');
+    });
+
+    document.addEventListener('click', () => picker.classList.remove('open'));
+
+    // Genre filter toggle
+    document.querySelectorAll('.genre-btn').forEach((genreBtn) => {
+      genreBtn.addEventListener('click', () => {
+        document.querySelectorAll('.genre-btn').forEach(b => b.classList.remove('active'));
+        genreBtn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

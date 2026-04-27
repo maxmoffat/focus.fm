@@ -1,0 +1,498 @@
+/* ════════════════════════════════════════
+   OVERVIEW PAGE
+════════════════════════════════════════ */
+
+/* ── Sub-header ── */
+.ov-subheader {
+  position: sticky;
+  top: var(--topbar-height);
+  z-index: 50;
+  height: 132px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+
+.ov-subheader-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ov-title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: var(--black);
+  line-height: 1;
+}
+
+.ov-meta {
+  font-size: 14px;
+  color: var(--black-75);
+  line-height: 1;
+}
+
+.ov-meta a {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Date picker dropdown */
+.ov-date-picker {
+  position: relative;
+}
+
+.ov-date-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  width: 232px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--black);
+  transition: border-color 0.15s ease;
+  text-align: left;
+}
+
+.ov-date-btn:hover {
+  border-color: var(--black-25);
+}
+
+.ov-date-btn-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ov-date-btn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.ov-date-btn-chevron {
+  width: 9px;
+  height: 5px;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.ov-date-picker.open .ov-date-btn-chevron {
+  transform: rotate(180deg);
+}
+
+.ov-date-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 232px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  list-style: none;
+  z-index: 50;
+  display: none;
+  overflow: hidden;
+}
+
+.ov-date-picker.open .ov-date-menu {
+  display: block;
+}
+
+.ov-date-menu li {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--black);
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.ov-date-menu li:hover {
+  background: var(--black-02);
+}
+
+.ov-date-menu li.selected {
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* ── Content layout ── */
+.ov-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ov-row {
+  display: flex;
+  gap: 24px;
+}
+
+/* ── Card base ── */
+.ov-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* ── Top 5 cards ── */
+.top5-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.top5-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 26px 0;
+}
+
+.top5-head-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.top5-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.top5-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.top5-total {
+  font-size: 12px;
+  color: var(--black-50);
+  white-space: nowrap;
+}
+
+.top5-wave {
+  display: block;
+  width: 100%;
+  height: 16px;
+  margin-top: 14px;
+}
+
+.top5-list {
+  list-style: none;
+}
+
+.top5-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 25px;
+  border-top: 1px solid var(--border);
+}
+
+.top5-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 5.6px;
+  background: #e2e2e2;
+  flex-shrink: 0;
+}
+
+.top5-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.top5-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.top5-secondary {
+  font-size: 12px;
+  color: var(--black);
+}
+
+.top5-tertiary {
+  font-size: 12px;
+  color: var(--black-50);
+}
+
+/* ── Banner CTA ── */
+.ov-banner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 80px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+
+.ov-banner:hover {
+  border-color: var(--red);
+}
+
+.banner-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  margin-right: 16px;
+}
+
+.banner-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.banner-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.banner-sub {
+  font-size: 12px;
+  color: var(--black-75);
+}
+
+.banner-arrow {
+  margin-left: auto;
+  width: 15px;
+  height: 20px;
+  flex-shrink: 0;
+  transform: rotate(90deg);
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+.ov-banner:hover .banner-arrow {
+  opacity: 1;
+}
+
+/* ── Listening trend card ── */
+.ov-trend-card {
+  flex-shrink: 0;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 26px 24px 20px;
+}
+
+.card-head-icon {
+  width: 17.5px;
+  height: 17.5px;
+  flex-shrink: 0;
+}
+
+.card-head-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.chart-wrapper {
+  padding: 0 24px 28px;
+}
+
+.chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Trending Artists card ── */
+.artists-card {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.genre-filter {
+  display: flex;
+  gap: 8px;
+  padding: 0 24px 0;
+  flex-wrap: wrap;
+}
+
+.genre-btn {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--black-25);
+  background: var(--white);
+  font-size: 12px;
+  color: var(--black);
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+  transition: all 0.1s ease;
+}
+
+.genre-btn.active {
+  border-color: var(--red);
+  background: var(--red-10);
+  color: var(--red);
+}
+
+.genre-btn:not(.active):hover {
+  border-color: var(--black-50);
+}
+
+.artist-list {
+  list-style: none;
+  margin-top: 16px;
+}
+
+.artist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.artist-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 5.6px;
+  background: #e2e2e2;
+  flex-shrink: 0;
+}
+
+.artist-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.artist-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.artist-desc {
+  font-size: 12px;
+  color: var(--black-50);
+  line-height: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Quick Stats card ── */
+.stats-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.stats-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 24px 24px;
+}
+
+.stat-group {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.stat-group-header {
+  background: rgba(34, 34, 34, 0.05);
+  padding: 14px 24px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 24px;
+  gap: 24px 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-value-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--black-75);
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--black);
+}
+
+.stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  width: fit-content;
+}
+
+.stat-badge--up {
+  background: rgba(35, 217, 35, 0.1);
+  color: #157f15;
+}
+
+.stat-badge--down {
+  background: rgba(217, 35, 35, 0.1);
+  color: #7f1515;
+}
+
+.stat-badge-arrow {
+  font-size: 8px;
+  line-height: 1;
+}

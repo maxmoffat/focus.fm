@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Layout Streamline Ultimate" clip-path="url(#clip0_0_36)">
+<path id="Vector" d="M1 1.99805V13.9981C1 14.5503 1.44771 14.9981 2 14.9981H14C14.5523 14.9981 15 14.5503 15 13.9981V1.99805C15 1.44576 14.5523 0.998047 14 0.998047H2C1.44771 0.998047 1 1.44576 1 1.99805Z" stroke="var(--stroke-0, #222222)" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M8.00195 14.9981V0.998047" stroke="var(--stroke-0, #222222)" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M8.00195 7.99805H14.6686" stroke="var(--stroke-0, #222222)" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_36">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

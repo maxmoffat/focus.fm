@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>focus.fm — Grid Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-text"><span class="brand-red">focus</span>.fm</span>
+      <div class="topbar-divider"></div>
+      <img src="assets/icon-logo-mark.svg" alt="" class="brand-mark" />
+    </div>
+    <div class="topbar-user">
+      <div class="user-avatar" id="user-avatar"></div>
+      <span class="user-name" id="topbar-username"></span>
+      <img src="assets/icon-as.svg" alt="" class="user-chevron" />
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <nav class="sidenav">
+      <a class="sidenav-item" data-page="overview" href="overview.html">
+        <img src="assets/icon-overview.svg" class="sidenav-icon" alt="" />
+        <span>Overview</span>
+      </a>
+      <a class="sidenav-item" data-page="scrobbles" href="scrobbles.html">
+        <img src="assets/icon-scrobbles.svg" class="sidenav-icon" alt="" />
+        <span>Scrobbles</span>
+      </a>
+      <a class="sidenav-item" data-page="grid-generator" href="grid-generator.html">
+        <img src="assets/icon-grid.svg" class="sidenav-icon" alt="" />
+        <span>Grid Generator</span>
+      </a>
+      <a class="sidenav-item" data-page="community" href="community.html">
+        <img src="assets/icon-community.svg" class="sidenav-icon" alt="" />
+        <span>Community</span>
+      </a>
+    </nav>
+
+    <div class="content-area">
+      <main class="main-content"></main>
+    </div>
+  </div>
+
+  <script src="shell.js"></script>
+</body>
+</html>

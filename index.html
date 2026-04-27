@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>focus.fm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="login-page">
+
+    <div class="login-content">
+      <div class="login-card">
+        <p class="login-instructions">
+          To get started with focus.fm, <strong>enter your last.fm username below</strong> and click &ldquo;Continue&rdquo;.
+        </p>
+
+        <form id="login-form" novalidate>
+          <input
+            id="username-input"
+            class="login-input"
+            type="text"
+            placeholder="Your last.fm username"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          />
+          <button id="continue-btn" class="login-btn" type="submit" disabled>
+            Continue
+          </button>
+        </form>
+
+        <p class="login-signup">
+          Don&rsquo;t have a last.fm account?
+          <a href="https://www.last.fm/join" target="_blank" rel="noopener noreferrer">Click here</a>
+          to create one
+        </p>
+      </div>
+
+      <div class="powered-by">
+        <span class="powered-by-label">POWERED BY</span>
+        <img src="assets/lastfm-logo.svg" alt="last.fm" class="lastfm-logo" />
+      </div>
+    </div>
+
+    <div class="wave-decoration">
+      <img src="assets/wave.svg" alt="" role="presentation" />
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
