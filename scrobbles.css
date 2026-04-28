@@ -1,0 +1,228 @@
+/* ════════════════════════════════════════
+   SCROBBLES PAGE
+════════════════════════════════════════ */
+
+/* ── Sub-header ── */
+.sc-subheader {
+  position: sticky;
+  top: var(--topbar-height);
+  z-index: 50;
+  height: 132px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+
+.sc-subheader-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sc-title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: var(--black);
+  line-height: 1;
+}
+
+.sc-meta {
+  font-size: 14px;
+  color: var(--black-75);
+  line-height: 1;
+}
+
+/* ── Skeleton ── */
+@keyframes sc-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.sc-skel {
+  display: inline-block;
+  background: #e0e0e0;
+  border-radius: 4px;
+  animation: sc-pulse 1.4s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+.sc-skel--title {
+  width: 180px;
+  height: 22px;
+}
+
+/* ── Table card ── */
+.sc-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: visible;
+}
+
+/* ── Shared row grid ── */
+.sc-col-head,
+.sc-row {
+  display: grid;
+  grid-template-columns: 44px 1fr 1fr 180px 40px;
+  align-items: center;
+  gap: 0 12px;
+  padding: 0 20px;
+}
+
+/* ── Column headers ── */
+.sc-col-head {
+  height: 44px;
+  background: rgba(34, 34, 34, 0.02);
+  border-bottom: 1px solid var(--border);
+}
+
+.sc-col-head span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--black-50);
+}
+
+/* ── Data rows ── */
+.sc-row {
+  min-height: 52px;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+.sc-row:first-child {
+  border-top: none;
+}
+
+.sc-row--now-playing {
+  background: rgba(35, 217, 35, 0.1);
+}
+
+/* ── Thumbnail ── */
+.sc-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  background: #e2e2e2;
+  flex-shrink: 0;
+}
+
+/* ── Text cells ── */
+.sc-track-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sc-artist-name {
+  font-size: 12px;
+  color: var(--black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sc-time {
+  font-size: 12px;
+  color: var(--black);
+}
+
+.sc-time--now-playing {
+  color: #157f15;
+  font-weight: 700;
+}
+
+/* ── Three-dot context menu ── */
+.sc-menu-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sc-menu-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--black);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s ease, color 0.1s ease;
+  font-family: inherit;
+}
+
+.sc-menu-btn:hover,
+.sc-menu-wrap.open .sc-menu-btn {
+  background: var(--black-10);
+  color: var(--black);
+}
+
+.sc-menu-list {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  list-style: none;
+  z-index: 200;
+  min-width: 160px;
+  overflow: hidden;
+}
+
+.sc-menu-list li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--black);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.1s ease;
+}
+
+.sc-menu-list li a:hover {
+  background: var(--black-02);
+}
+
+/* ── Loading dots ── */
+.sc-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.sc-loader-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d0d0d0;
+  animation: sc-pulse 1.2s ease-in-out infinite;
+}
+
+.sc-loader-dot:nth-child(2) { animation-delay: 0.2s; }
+.sc-loader-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── End of list ── */
+.sc-end {
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--black-50);
+  border-top: 1px solid var(--border);
+}

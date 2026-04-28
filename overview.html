@@ -53,8 +53,9 @@
         <div class="ov-subheader-left">
           <h1 class="ov-title" id="ov-title">username&rsquo;s focus.fm</h1>
           <p class="ov-meta">
-            03/01/2026 &ndash; 03/31/2026 &nbsp;&bull;&nbsp;
-            <a id="ov-scrobble-link" href="scrobbles.html">780 scrobbles</a>
+            <span id="ov-meta-range"></span>
+            &nbsp;&bull;&nbsp;
+            <span id="ov-meta-scrobbles"></span>
           </p>
         </div>
         <div class="ov-subheader-right">
@@ -84,165 +85,42 @@
           <div class="ov-row">
 
             <!-- Top 5 Albums -->
-            <div class="ov-card top5-card">
+            <div class="ov-card top5-card" id="card-albums">
               <div class="top5-head">
                 <div class="top5-head-left">
                   <img src="assets/icon-album.svg" alt="" class="top5-icon" />
                   <span class="top5-title">Top 5 Albums</span>
                 </div>
-                <span class="top5-total">191 Total</span>
+                <span class="top5-total"></span>
               </div>
               <img src="assets/icon-card-wave.svg" alt="" class="top5-wave" />
-              <ul class="top5-list">
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Ripple</p>
-                    <p class="top5-secondary">Grateful Dead</p>
-                    <p class="top5-tertiary">47 scrobbles</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">The College Dropout</p>
-                    <p class="top5-secondary">Kanye West</p>
-                    <p class="top5-tertiary">32 scrobbles</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Everything All The Time</p>
-                    <p class="top5-secondary">Band of Horses</p>
-                    <p class="top5-tertiary">28 scrobbles</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Father of the Bride</p>
-                    <p class="top5-secondary">Vampire Weekend</p>
-                    <p class="top5-tertiary">26 scrobbles</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Born &amp; Raised</p>
-                    <p class="top5-secondary">John Mayer</p>
-                    <p class="top5-tertiary">24 scrobbles</p>
-                  </div>
-                </li>
-              </ul>
+              <ul class="top5-list"></ul>
             </div>
 
             <!-- Top 5 Artists -->
-            <div class="ov-card top5-card">
+            <div class="ov-card top5-card" id="card-artists">
               <div class="top5-head">
                 <div class="top5-head-left">
                   <img src="assets/icon-artists.svg" alt="" class="top5-icon" />
                   <span class="top5-title">Top 5 Artists</span>
                 </div>
-                <span class="top5-total">281 Total</span>
+                <span class="top5-total"></span>
               </div>
               <img src="assets/icon-card-wave.svg" alt="" class="top5-wave" />
-              <ul class="top5-list">
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Vampire Weekend</p>
-                    <p class="top5-secondary">107 scrobbles</p>
-                    <p class="top5-tertiary">#1 overall</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">The White Stripes</p>
-                    <p class="top5-secondary">98 scrobbles</p>
-                    <p class="top5-tertiary">#17 overall</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">The Weeknd</p>
-                    <p class="top5-secondary">56 scrobbles</p>
-                    <p class="top5-tertiary">#68 overall</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Wilco</p>
-                    <p class="top5-secondary">40 scrobbles</p>
-                    <p class="top5-tertiary">#3 overall</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Geese</p>
-                    <p class="top5-secondary">23 scrobbles</p>
-                    <p class="top5-tertiary">#80 overall</p>
-                  </div>
-                </li>
-              </ul>
+              <ul class="top5-list"></ul>
             </div>
 
             <!-- Top 5 Tracks -->
-            <div class="ov-card top5-card">
+            <div class="ov-card top5-card" id="card-tracks">
               <div class="top5-head">
                 <div class="top5-head-left">
                   <img src="assets/icon-track.svg" alt="" class="top5-icon" />
                   <span class="top5-title">Top 5 Tracks</span>
                 </div>
-                <span class="top5-total">780 Total</span>
+                <span class="top5-total"></span>
               </div>
               <img src="assets/icon-card-wave.svg" alt="" class="top5-wave" />
-              <ul class="top5-list">
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Proud</p>
-                    <p class="top5-secondary">Alex G</p>
-                    <p class="top5-tertiary">20 scrobbles</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Meet Me In The City</p>
-                    <p class="top5-secondary">Hurray for the Riff Raff</p>
-                    <p class="top5-tertiary">12 scrobbles</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Crowbar</p>
-                    <p class="top5-secondary">Waxahatchee</p>
-                    <p class="top5-tertiary">12 scrobbles</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Location</p>
-                    <p class="top5-secondary">Playboi Carti</p>
-                    <p class="top5-tertiary">8 scrobbles</p>
-                  </div>
-                </li>
-                <li class="top5-item">
-                  <div class="top5-thumb"></div>
-                  <div class="top5-info">
-                    <p class="top5-name">Mary</p>
-                    <p class="top5-secondary">Big Thief</p>
-                    <p class="top5-tertiary">6 scrobbles</p>
-                  </div>
-                </li>
-              </ul>
+              <ul class="top5-list"></ul>
             </div>
 
           </div><!-- /ov-row top5 -->
@@ -467,51 +345,7 @@
   </div><!-- /app-shell -->
 
   <script src="shell.js"></script>
-  <script>
-    // Populate username in sub-header
-    const _u = sessionStorage.getItem(‘lfm_username’);
-    if (_u) {
-      document.getElementById(‘ov-title’).textContent = `${_u}’s focus.fm`;
-    }
-
-    // Date picker dropdown
-    const picker  = document.getElementById('ov-date-picker');
-    const btn     = document.getElementById('ov-date-btn');
-    const label   = document.getElementById('ov-date-label');
-    const menu    = document.getElementById('ov-date-menu');
-
-    const dateLabels = {
-      'week': 'Week',
-      'month': 'Month',
-      '3m':   '3 Months',
-      '6m':   '6 Months',
-      '12m':  '12 Months',
-      'all':  'All Time',
-    };
-
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      picker.classList.toggle('open');
-    });
-
-    menu.addEventListener('click', (e) => {
-      const li = e.target.closest('li');
-      if (!li) return;
-      menu.querySelectorAll('li').forEach(el => el.classList.remove('selected'));
-      li.classList.add('selected');
-      label.textContent = dateLabels[li.dataset.value] || li.textContent;
-      picker.classList.remove('open');
-    });
-
-    document.addEventListener('click', () => picker.classList.remove('open'));
-
-    // Genre filter toggle
-    document.querySelectorAll('.genre-btn').forEach((genreBtn) => {
-      genreBtn.addEventListener('click', () => {
-        document.querySelectorAll('.genre-btn').forEach(b => b.classList.remove('active'));
-        genreBtn.classList.add('active');
-      });
-    });
-  </script>
+  <script src="lastfm.js"></script>
+  <script src="overview.js"></script>
 </body>
 </html>

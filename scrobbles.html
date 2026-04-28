@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="overview.css" />
+  <link rel="stylesheet" href="scrobbles.css" />
 </head>
 <body>
 
@@ -25,6 +27,7 @@
   </header>
 
   <div class="app-shell">
+
     <nav class="sidenav">
       <a class="sidenav-item" data-page="overview" href="overview.html">
         <img src="assets/icon-overview.svg" class="sidenav-icon" alt="" />
@@ -45,10 +48,67 @@
     </nav>
 
     <div class="content-area">
-      <main class="main-content"></main>
-    </div>
-  </div>
+
+      <!-- Sub-header -->
+      <div class="sc-subheader">
+        <div class="sc-subheader-left">
+          <h1 class="sc-title" id="sc-title"><span class="sc-skel sc-skel--title"></span></h1>
+          <p class="sc-meta" id="sc-meta"></p>
+        </div>
+        <div class="ov-date-picker" id="sc-date-picker">
+          <button class="ov-date-btn" id="sc-date-btn" type="button">
+            <img src="assets/icon-calendar.svg" alt="" class="ov-date-btn-icon" />
+            <span class="ov-date-btn-label" id="sc-date-label">Month</span>
+            <img src="assets/icon-as.svg" alt="" class="ov-date-btn-chevron" />
+          </button>
+          <ul class="ov-date-menu" id="sc-date-menu">
+            <li data-value="week">Week</li>
+            <li data-value="month" class="selected">Month</li>
+            <li data-value="3m">3 Months</li>
+            <li data-value="6m">6 Months</li>
+            <li data-value="12m">12 Months</li>
+            <li data-value="all">All Time</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <main class="main-content">
+        <div class="sc-card">
+
+          <!-- Column headers -->
+          <div class="sc-col-head">
+            <div></div>
+            <span>Track</span>
+            <span>Artist</span>
+            <span>Scrobbled On</span>
+            <div></div>
+          </div>
+
+          <!-- Row body -->
+          <div id="sc-tbody"></div>
+
+          <!-- Loader -->
+          <div class="sc-loader" id="sc-loader" hidden>
+            <div class="sc-loader-dot"></div>
+            <div class="sc-loader-dot"></div>
+            <div class="sc-loader-dot"></div>
+          </div>
+
+          <!-- End of list -->
+          <div class="sc-end" id="sc-end" hidden>All scrobbles loaded</div>
+
+          <!-- IntersectionObserver sentinel -->
+          <div id="sc-sentinel"></div>
+
+        </div>
+      </main>
+
+    </div><!-- /content-area -->
+  </div><!-- /app-shell -->
 
   <script src="shell.js"></script>
+  <script src="lastfm.js"></script>
+  <script src="scrobbles.js"></script>
 </body>
 </html>

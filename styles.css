@@ -330,6 +330,7 @@ body {
 .content-area {
   margin-left: var(--sidenav-width);
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - var(--topbar-height));
