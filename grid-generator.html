@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="overview.css" />
+  <link rel="stylesheet" href="grid-generator.css" />
 </head>
 <body>
 
@@ -25,6 +27,7 @@
   </header>
 
   <div class="app-shell">
+
     <nav class="sidenav">
       <a class="sidenav-item" data-page="overview" href="overview.html">
         <img src="assets/icon-overview.svg" class="sidenav-icon" alt="" />
@@ -45,10 +48,101 @@
     </nav>
 
     <div class="content-area">
-      <main class="main-content"></main>
-    </div>
-  </div>
+
+      <!-- Sub-header -->
+      <div class="gg-subheader">
+        <div class="gg-subheader-top">
+          <h1 class="gg-title">Generate Your Grid</h1>
+          <p class="gg-desc">Use the form below to set the criteria to build your grid. Once you have your settings how you want them, click "Generate" to see your results. <strong>Grids can be downloaded as an image once they have been generated.</strong></p>
+        </div>
+        <div class="gg-form-row">
+          <!-- Timeframe -->
+          <div class="gg-field">
+            <span class="gg-label">Timeframe</span>
+            <div class="ov-date-picker" id="gg-date-picker">
+              <button class="ov-date-btn" id="gg-date-btn" type="button">
+                <img src="assets/icon-calendar.svg" alt="" class="ov-date-btn-icon" />
+                <span class="ov-date-btn-label" id="gg-date-label">Month</span>
+                <img src="assets/icon-as.svg" alt="" class="ov-date-btn-chevron" />
+              </button>
+              <ul class="ov-date-menu" id="gg-date-menu">
+                <li data-value="week">Week</li>
+                <li data-value="month" class="selected">Month</li>
+                <li data-value="3m">3 Months</li>
+                <li data-value="6m">6 Months</li>
+                <li data-value="12m">12 Months</li>
+                <li data-value="all">All Time</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Grid Size -->
+          <div class="gg-field">
+            <span class="gg-label">Grid Size</span>
+            <div class="ov-date-picker" id="gg-size-picker">
+              <button class="ov-date-btn" id="gg-size-btn" type="button">
+                <span class="ov-date-btn-label" id="gg-size-label">3×3</span>
+                <img src="assets/icon-as.svg" alt="" class="ov-date-btn-chevron" />
+              </button>
+              <ul class="ov-date-menu" id="gg-size-menu">
+                <li data-value="3" class="selected">3×3</li>
+                <li data-value="4">4×4</li>
+                <li data-value="5">5×5</li>
+                <li data-value="6">6×6</li>
+                <li data-value="8">8×8</li>
+                <li data-value="10">10×10</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Toggles -->
+          <div class="gg-toggles">
+            <label class="gg-toggle-wrap">
+              <input type="checkbox" class="gg-toggle-input" id="gg-album" checked />
+              <span class="gg-toggle-track"></span>
+              <span class="gg-toggle-text">Album Title</span>
+            </label>
+            <label class="gg-toggle-wrap">
+              <input type="checkbox" class="gg-toggle-input" id="gg-artist" checked />
+              <span class="gg-toggle-track"></span>
+              <span class="gg-toggle-text">Artist Name</span>
+            </label>
+            <label class="gg-toggle-wrap">
+              <input type="checkbox" class="gg-toggle-input" id="gg-plays" checked />
+              <span class="gg-toggle-track"></span>
+              <span class="gg-toggle-text">Play Count</span>
+            </label>
+          </div>
+        </div>
+        <button class="gg-btn" id="gg-generate" type="button">Generate Grid</button>
+      </div>
+
+      <!-- Body -->
+      <div class="gg-body" id="gg-body">
+
+        <!-- Loading spinner -->
+        <div class="gg-loader" id="gg-loader" hidden>
+          <div class="gg-spinner"></div>
+        </div>
+
+        <!-- Grid result -->
+        <div id="gg-result" hidden>
+          <div class="gg-download-bar">
+            <button class="gg-download-link" id="gg-download-btn" type="button">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 1v8M3.5 5.5L7 9l3.5-3.5M1 11.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span id="gg-download-text">Download Image</span>
+            </button>
+          </div>
+          <div class="gg-grid" id="gg-grid"></div>
+        </div>
+
+      </div>
+
+    </div><!-- /content-area -->
+  </div><!-- /app-shell -->
 
   <script src="shell.js"></script>
+  <script src="lastfm.js"></script>
+  <script src="grid-generator.js"></script>
 </body>
 </html>

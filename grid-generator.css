@@ -1,0 +1,256 @@
+/* ════════════════════════════════════════
+   GRID GENERATOR PAGE
+════════════════════════════════════════ */
+
+/* ── Sub-header ── */
+.gg-subheader {
+  top: var(--topbar-height);
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex-shrink: 0;
+}
+
+.gg-title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.gg-desc {
+  font-size: 14px;
+  color: var(--black-75);
+  line-height: 22px;
+}
+
+.gg-desc strong {
+  color: var(--black);
+  font-weight: 700;
+}
+
+/* ── Form row ── */
+.gg-form-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.gg-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gg-label {
+  font-size: 12px;
+  color: var(--black-75);
+  line-height: 1;
+}
+
+
+/* ── Toggles ── */
+.gg-toggles {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.gg-toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.gg-toggle-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.gg-toggle-track {
+  position: relative;
+  width: 28px;
+  height: 16px;
+  background: #ccc;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.gg-toggle-track::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--white);
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s ease;
+}
+
+.gg-toggle-input:checked + .gg-toggle-track {
+  background: var(--black);
+}
+
+.gg-toggle-input:checked + .gg-toggle-track::after {
+  transform: translateX(12px);
+}
+
+.gg-toggle-text {
+  font-size: 12px;
+  color: var(--black);
+  white-space: nowrap;
+}
+
+/* ── Generate button ── */
+.gg-btn {
+  align-self: flex-start;
+  height: 36px;
+  padding: 0 20px;
+  background: var(--red);
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--white);
+  cursor: pointer;
+  transition: opacity 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+
+.gg-btn:hover {
+  background: #b81e1e;
+}
+
+.gg-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ── Body area ── */
+.gg-body {
+  flex: 1;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Loading spinner ── */
+@keyframes gg-spin {
+  to { transform: rotate(360deg); }
+}
+
+.gg-loader {
+  display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+.gg-loader:not([hidden]) {
+  display: flex;
+}
+
+.gg-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--black);
+  border-radius: 50%;
+  animation: gg-spin 0.7s linear infinite;
+}
+
+/* ── Download bar ── */
+.gg-download-bar {
+  padding: 40px 40px 0 40px;
+}
+
+.gg-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 400;
+  color: var(--red);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.gg-download-link:hover {
+  opacity: 0.75;
+}
+
+.gg-download-link:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ── Grid ── */
+.gg-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--gg-cols, 3), 1fr);
+  padding:40px;
+}
+
+.gg-cell {
+  aspect-ratio: 1;
+  background-color: #e2e2e2;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Cell label overlay ── */
+.gg-cell-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(34, 34, 34, 0.75);
+  border-radius: 4px;
+  padding: 6px 8px;
+  max-width: calc(100% - 16px);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gg-cell-album,
+.gg-cell-artist,
+.gg-cell-plays {
+  font-size: 12px;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 16px;
+}
+
+.gg-cell-album {
+  font-weight: 700;
+}
+
+.gg-cell-artist,
+.gg-cell-plays {
+  font-weight: 400;
+}
