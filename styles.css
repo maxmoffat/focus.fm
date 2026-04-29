@@ -31,6 +31,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', sans-serif;
   background-color: var(--white);
   color: var(--black);
+  letter-spacing:0.02em;
 }
 
 /* ════════════════════════════════════════
