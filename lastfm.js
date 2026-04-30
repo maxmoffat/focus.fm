@@ -163,6 +163,12 @@ const LastFM = (() => {
 
     periodToTimestamps,
 
+    async getAudioDBImage(name) {
+      const res  = await fetch(`https://www.theaudiodb.com/api/v1/json/2/search.php?s=${encodeURIComponent(name)}`);
+      const data = await res.json();
+      return data.artists?.[0]?.strArtistThumb || '';
+    },
+
     async getiTunesImage(term, entity = 'song') {
       const url = `https://itunes.apple.com/search?term=${encodeURIComponent(term)}&media=music&entity=${entity}&limit=1`;
       const res  = await fetch(url);

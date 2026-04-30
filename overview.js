@@ -175,7 +175,7 @@
       const rank = a['@attr']?.rank;
       return `
         <li class="top5-item">
-          <div class="top5-thumb"></div>
+          <div class="top5-thumb" style="background-image:url('artist-placeholder.svg');background-size:cover;background-position:center;"></div>
           <div class="top5-info">
             <p class="top5-name">${esc(a.name)}</p>
             <p class="top5-secondary">${fmtNum(a.playcount)} scrobbles</p>
@@ -186,11 +186,9 @@
 
     const thumbs = list.querySelectorAll('.top5-thumb');
     artists.forEach((a, i) => {
-      LastFM.getiTunesImage(a.name, 'album').then(url => {
+      LastFM.getAudioDBImage(a.name).then(url => {
         if (url && thumbs[i]) {
-          thumbs[i].style.backgroundImage    = `url('${url}')`;
-          thumbs[i].style.backgroundSize     = 'cover';
-          thumbs[i].style.backgroundPosition = 'center';
+          thumbs[i].style.backgroundImage = `url('${url}')`;
         }
       }).catch(() => {});
     });
