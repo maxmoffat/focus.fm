@@ -160,8 +160,15 @@
 }
 
 /* ── Top 5 cards ── */
-.top5-card {
+.ov-card.top5-card {
   min-width: 0;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+}
+
+.top5-header {
+  flex-shrink: 0;
 }
 
 .top5-head {
@@ -205,6 +212,9 @@
 
 .top5-list {
   list-style: none;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .top5-item {
@@ -328,6 +338,10 @@
   padding: 26px 24px 20px;
 }
 
+.stats-card > .card-head {
+  flex-shrink: 0;
+}
+
 .card-head-icon {
   width: 17.5px;
   height: 17.5px;
@@ -353,18 +367,29 @@
 }
 
 /* ── Trending Artists card ── */
-.artists-card {
+.ov-card.artists-card {
   flex: 1;
   min-width: 0;
+  height: 520px;
   display: flex;
   flex-direction: column;
+}
+
+.artists-header {
+  flex-shrink: 0;
 }
 
 .genre-filter {
   display: flex;
   gap: 8px;
-  padding: 0 24px 0;
-  flex-wrap: wrap;
+  padding: 0 24px 24px 24px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.genre-filter::-webkit-scrollbar {
+  display: none;
 }
 
 .genre-btn {
@@ -392,7 +417,9 @@
 
 .artist-list {
   list-style: none;
-  margin-top: 16px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .artist-item {
@@ -435,9 +462,12 @@
 }
 
 /* ── Quick Stats card ── */
-.stats-card {
+.ov-card.stats-card {
   flex: 1;
   min-width: 0;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
 }
 
 .stats-inner {
@@ -445,6 +475,9 @@
   flex-direction: column;
   gap: 24px;
   padding: 0 24px 24px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .stat-group {
@@ -524,6 +557,15 @@
 
 .top5-skel {
   background: #e0e0e0;
+  animation: ov-pulse 1.4s ease-in-out infinite;
+}
+
+.genre-btn-skel {
+  display: inline-block;
+  height: 30px;
+  border-radius: 4px;
+  background: #e0e0e0;
+  border: none;
   animation: ov-pulse 1.4s ease-in-out infinite;
 }
 

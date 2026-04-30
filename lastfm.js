@@ -103,15 +103,52 @@ const LastFM = (() => {
   return {
     PERIOD,
 
-    getTopAlbums(user, periodKey, limit = 5) {
+    async getTopGenres(user, artistLimit = 10) {
+      const artistData = await request('user.getTopArtists', { user, period: 'overall', limit: artistLimit });
+      const raw        = artistData.topartists?.artist || [];
+      const artists    = Array.isArray(raw) ? raw : [raw];
+
+      const tagResults = await Promise.allSettled(
+        artists.map(a => request('artist.getTopTags', { artist: a.name }))
+      );
+
+      const scores = {};
+      tagResults.forEach((r, i) => {
+        if (r.status !== 'fulfilled') return;
+        const tags   = r.value.toptags?.tag;
+        const tagArr = Array.isArray(tags) ? tags : tags ? [tags] : [];
+        const weight = artists.length - i;
+        tagArr.slice(0, 5).forEach(t => {
+          const key      = t.name.toLowerCase();
+          scores[key] = (scores[key] || 0) + (parseInt(t.count, 10) || 0) * weight;
+        });
+      });
+
+      return Object.entries(scores)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([name]) => ({ name }));
+    },
+
+    getTagTopArtists(tag, limit = 10) {
+      return request('tag.getTopArtists', { tag, limit });
+    },
+
+    async getArtistInfo(artist) {
+      const data    = await request('artist.getInfo', { artist, autocorrect: 1 });
+      const summary = data.artist?.bio?.summary || '';
+      return summary.replace(/<[^>]*>/g, '').trim();
+    },
+
+    getTopAlbums(user, periodKey, limit = 10) {
       return request('user.getTopAlbums', { user, period: PERIOD[periodKey] || periodKey, limit });
     },
 
-    getTopArtists(user, periodKey, limit = 5) {
+    getTopArtists(user, periodKey, limit = 10) {
       return request('user.getTopArtists', { user, period: PERIOD[periodKey] || periodKey, limit });
     },
 
-    getTopTracks(user, periodKey, limit = 5) {
+    getTopTracks(user, periodKey, limit = 10) {
       return request('user.getTopTracks', { user, period: PERIOD[periodKey] || periodKey, limit });
     },
 

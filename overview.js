@@ -47,6 +47,9 @@
   const label         = document.getElementById('ov-date-label');
   const menu          = document.getElementById('ov-date-menu');
 
+  const genreFilter     = document.getElementById('genre-filter');
+  const genreArtistList = document.getElementById('genre-artist-list');
+
   const chartSvg     = document.querySelector('.chart-svg');
   const chartWrapper = document.querySelector('.chart-wrapper');
 
@@ -118,12 +121,82 @@
 
   // ── Genre filter ──────────────────────────────────────────────────────────
 
-  document.querySelectorAll('.genre-btn').forEach(gb => {
-    gb.addEventListener('click', () => {
-      document.querySelectorAll('.genre-btn').forEach(b => b.classList.remove('active'));
-      gb.classList.add('active');
-    });
+  genreFilter.addEventListener('click', e => {
+    const gb = e.target.closest('.genre-btn');
+    if (!gb) return;
+    genreFilter.querySelectorAll('.genre-btn').forEach(b => b.classList.remove('active'));
+    gb.classList.add('active');
+    loadTagArtists(gb.dataset.tag);
   });
+
+  let tagArtistGen = 0;
+
+  async function loadTagArtists(tag) {
+    const gen = ++tagArtistGen;
+
+    genreArtistList.innerHTML = Array.from({ length: 5 }, () => `
+      <li class="artist-item">
+        <div class="artist-thumb top5-skel"></div>
+        <div class="artist-info" style="flex:1">
+          <div class="top5-skel-bar" style="width:140px"></div>
+          <div class="top5-skel-bar" style="width:90%"></div>
+          <div class="top5-skel-bar" style="width:70%"></div>
+        </div>
+      </li>`).join('');
+
+    try {
+      const data    = await LastFM.getTagTopArtists(tag, 10);
+      if (gen !== tagArtistGen) return;
+      const raw     = data.topartists?.artist || [];
+      const artists = Array.isArray(raw) ? raw : [raw];
+
+      genreArtistList.innerHTML = artists.map(a => `
+        <li class="artist-item">
+          <div class="artist-thumb" style="background-image:url('artist-placeholder.svg');background-size:cover;background-position:center;" data-name="${esc(a.name)}"></div>
+          <div class="artist-info">
+            <p class="artist-name">${esc(a.name)}</p>
+            <p class="artist-desc"></p>
+          </div>
+        </li>`).join('');
+
+      const thumbs = genreArtistList.querySelectorAll('.artist-thumb');
+      const descs  = genreArtistList.querySelectorAll('.artist-desc');
+
+      artists.forEach((a, i) => {
+        LastFM.getAudioDBImage(a.name).then(url => {
+          if (gen !== tagArtistGen || !url || !thumbs[i]) return;
+          thumbs[i].style.backgroundImage = `url('${url}')`;
+        }).catch(() => {});
+
+        LastFM.getArtistInfo(a.name).then(bio => {
+          if (gen !== tagArtistGen || !descs[i]) return;
+          descs[i].textContent = bio;
+        }).catch(() => {});
+      });
+    } catch (err) {
+      if (gen !== tagArtistGen) return;
+      genreArtistList.innerHTML = `<li class="top5-item top5-error">Failed to load artists</li>`;
+      console.error('loadTagArtists failed:', err);
+    }
+  }
+
+  async function loadTags() {
+    if (!username) return;
+    const SKEL_WIDTHS = [88, 72, 96, 64, 80];
+    genreFilter.innerHTML = SKEL_WIDTHS.map(w =>
+      `<span class="genre-btn-skel" style="width:${w}px"></span>`
+    ).join('');
+    try {
+      const tags = await LastFM.getTopGenres(username);
+      genreFilter.innerHTML = tags.map((t, i) =>
+        `<button class="genre-btn${i === 0 ? ' active' : ''}" type="button" data-tag="${esc(t.name)}">${esc(t.name)}</button>`
+      ).join('');
+      if (tags.length) loadTagArtists(tags[0].name);
+    } catch (err) {
+      genreFilter.innerHTML = '';
+      console.error('loadTags failed:', err);
+    }
+  }
 
   // ── Skeleton / error ──────────────────────────────────────────────────────
 
@@ -404,4 +477,5 @@
   }
 
   loadData(currentPeriod);
+  loadTags();
 })();
