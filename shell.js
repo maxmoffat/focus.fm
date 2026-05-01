@@ -18,4 +18,19 @@ if (!username) {
     item.classList.toggle('active', isActive);
     item.querySelector('.sidenav-icon').src = icons[item.dataset.page][isActive ? 'active' : 'default'];
   });
+
+  // Back to top button
+  const btn = document.createElement('button');
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<img src="assets/icon-back-to-top.svg" alt="" />';
+  document.body.appendChild(btn);
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 200);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }

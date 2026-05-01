@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="overview.css?v=2" />
+  <link rel="stylesheet" href="overview.css?v=3" />
 </head>
 <body>
 
@@ -240,69 +240,45 @@
               </div>
               <div class="stats-inner">
 
-                <!-- Time Spent Listening -->
-                <div class="stat-group">
-                  <div class="stat-group-header">Time Spent Listening</div>
-                  <div class="stat-grid">
-                    <div class="stat-item">
-                      <p class="stat-label">Avg. Scrobbles Per Day</p>
-                      <div class="stat-value-row">
-                        <p class="stat-value">61 / day</p>
-                        <span class="stat-badge stat-badge--down"><span class="stat-badge-arrow">↓</span> 8</span>
-                      </div>
+                <!-- Listening Time row -->
+                <div class="qs-row">
+                  <div class="qs-tile qs-tile--lg">
+                    <p class="qs-tile-head">Listening Time</p>
+                    <div class="qs-tile-main">
+                      <p class="qs-tile-val-xl" id="qs-listening-time">—</p>
+                      <p class="qs-tile-sub" id="qs-per-day">—</p>
                     </div>
-                    <div class="stat-item">
-                      <p class="stat-label">Overall Listening Time</p>
-                      <div class="stat-value-row">
-                        <p class="stat-value">1d, 14 hrs</p>
-                        <span class="stat-badge stat-badge--up"><span class="stat-badge-arrow">↑</span> 2 hrs</span>
-                      </div>
+                  </div>
+                  <div class="qs-col">
+                    <div class="qs-tile qs-tile--sm">
+                      <p class="qs-tile-label">Most Daily Scrobbles</p>
+                      <p class="qs-tile-val" id="qs-peak">—</p>
                     </div>
-                    <div class="stat-item">
-                      <p class="stat-label">Highest Daily Scrobbles</p>
-                      <div class="stat-value-row">
-                        <p class="stat-value">81</p>
-                        <span class="stat-badge stat-badge--up"><span class="stat-badge-arrow">↑</span> 36</span>
-                      </div>
-                    </div>
-                    <div class="stat-item">
-                      <p class="stat-label">Most Active Day</p>
-                      <p class="stat-value">Mar 1st</p>
+                    <div class="qs-tile qs-tile--sm">
+                      <p class="qs-tile-label">Artist to Track Ratio</p>
+                      <p class="qs-tile-val" id="qs-ratio">—</p>
                     </div>
                   </div>
                 </div>
 
-                <!-- New Finds -->
-                <div class="stat-group">
-                  <div class="stat-group-header">New Finds</div>
-                  <div class="stat-grid">
-                    <div class="stat-item">
-                      <p class="stat-label">New Albums</p>
-                      <div class="stat-value-row">
-                        <p class="stat-value">24</p>
-                        <span class="stat-badge stat-badge--up"><span class="stat-badge-arrow">↑</span> 4</span>
-                      </div>
+                <!-- Unique Listening -->
+                <div class="qs-tile qs-tile--unique">
+                  <p class="qs-tile-head">Unique Listening</p>
+                  <div class="qs-unique-grid">
+                    <div class="qs-unique-item">
+                      <img src="assets/icon-album.svg" class="qs-unique-icon" alt="" />
+                      <p class="qs-tile-label">Unique Albums</p>
+                      <p class="qs-tile-val" id="qs-albums">—</p>
                     </div>
-                    <div class="stat-item">
-                      <p class="stat-label">New Artists</p>
-                      <div class="stat-value-row">
-                        <p class="stat-value">13</p>
-                        <span class="stat-badge stat-badge--down"><span class="stat-badge-arrow">↓</span> 2</span>
-                      </div>
+                    <div class="qs-unique-item">
+                      <img src="assets/icon-artists.svg" class="qs-unique-icon" alt="" />
+                      <p class="qs-tile-label">Unique Artists</p>
+                      <p class="qs-tile-val" id="qs-artists">—</p>
                     </div>
-                    <div class="stat-item">
-                      <p class="stat-label">New Tracks</p>
-                      <div class="stat-value-row">
-                        <p class="stat-value">170</p>
-                        <span class="stat-badge stat-badge--up"><span class="stat-badge-arrow">↑</span> 18</span>
-                      </div>
-                    </div>
-                    <div class="stat-item">
-                      <p class="stat-label">New Genres</p>
-                      <div class="stat-value-row">
-                        <p class="stat-value">7</p>
-                        <span class="stat-badge stat-badge--down"><span class="stat-badge-arrow">↓</span> 1</span>
-                      </div>
+                    <div class="qs-unique-item">
+                      <img src="assets/icon-track.svg" class="qs-unique-icon" alt="" />
+                      <p class="qs-tile-label">Unique Songs</p>
+                      <p class="qs-tile-val" id="qs-tracks">—</p>
                     </div>
                   </div>
                 </div>

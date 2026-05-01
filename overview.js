@@ -25,6 +25,74 @@
     return Number(n).toLocaleString();
   }
 
+  function fmtDuration(secs) {
+    const d = Math.floor(secs / 86400);
+    const h = Math.floor((secs % 86400) / 3600);
+    const m = Math.floor((secs % 3600) / 60);
+    if (d > 0) return `${d}d ${h}h`;
+    if (h > 0) return `${h}h ${m}m`;
+    return `${m}m`;
+  }
+
+  const PERIOD_DAYS_MAP = { week: 7, month: 30, '3m': 90, '6m': 180, '12m': 365 };
+
+  function avgTrackDurationSecs(tracksData) {
+    const raw    = tracksData.toptracks?.track || [];
+    const tracks = Array.isArray(raw) ? raw : [raw];
+    let totalDur = 0, totalPlays = 0;
+    tracks.forEach(t => {
+      const dur   = parseInt(t.duration, 10) || 0;
+      const plays = parseInt(t.playcount, 10) || 0;
+      if (dur > 0) { totalDur += dur * plays; totalPlays += plays; }
+    });
+    return totalPlays > 0 ? totalDur / totalPlays : 210;
+  }
+
+  function renderStats(albumsR, artistsR, tracksR, countR, periodKey) {
+    const scrobbles    = countR.status === 'fulfilled' ? countR.value : 0;
+    const days         = PERIOD_DAYS_MAP[periodKey];
+    const uniqueAlbums  = albumsR.status  === 'fulfilled' ? parseInt(albumsR.value.topalbums['@attr']?.total,  10) || 0 : 0;
+    const uniqueArtists = artistsR.status === 'fulfilled' ? parseInt(artistsR.value.topartists['@attr']?.total, 10) || 0 : 0;
+    const uniqueSongs   = tracksR.status  === 'fulfilled' ? parseInt(tracksR.value.toptracks['@attr']?.total,  10) || 0 : 0;
+
+    // Listening time (estimated)
+    if (scrobbles > 0 && tracksR.status === 'fulfilled') {
+      const avgSecs = avgTrackDurationSecs(tracksR.value);
+      if (qsListeningTime) qsListeningTime.textContent = fmtDuration(scrobbles * avgSecs);
+    } else {
+      if (qsListeningTime) qsListeningTime.textContent = '—';
+    }
+
+    // Avg scrobbles per day
+    if (qsPerDay) {
+      if (scrobbles > 0 && days) {
+        qsPerDay.textContent = `${Math.round(scrobbles / days)} scrobbles per day`;
+      } else if (scrobbles > 0) {
+        qsPerDay.textContent = `${fmtNum(scrobbles)} total scrobbles`;
+      } else {
+        qsPerDay.textContent = '—';
+      }
+    }
+
+    // Artist to track ratio
+    if (qsRatio) {
+      qsRatio.textContent = uniqueArtists > 0 && uniqueSongs > 0
+        ? `${uniqueArtists} to ${uniqueSongs}`
+        : '—';
+    }
+
+    // Unique counts
+    if (qsAlbums)  qsAlbums.textContent  = uniqueAlbums  > 0 ? fmtNum(uniqueAlbums)  : '—';
+    if (qsArtists) qsArtists.textContent = uniqueArtists > 0 ? fmtNum(uniqueArtists) : '—';
+    if (qsTracks)  qsTracks.textContent  = uniqueSongs   > 0 ? fmtNum(uniqueSongs)   : '—';
+  }
+
+  function updateStatsPeak(series) {
+    if (!qsPeak || !series.length) return;
+    const peak = series.reduce((best, s) => s.count > best.count ? s : best, series[0]);
+    qsPeak.textContent = peak.count > 0 ? `${fmtNum(peak.count)} (${peak.label})` : '—';
+  }
+
   function periodDateRange(key) {
     if (key === 'all') return 'All Time';
     const days = { week: 7, month: 30, '3m': 90, '6m': 180, '12m': 365 }[key] || 30;
@@ -49,6 +117,14 @@
 
   const genreFilter     = document.getElementById('genre-filter');
   const genreArtistList = document.getElementById('genre-artist-list');
+
+  const qsListeningTime = document.getElementById('qs-listening-time');
+  const qsPerDay        = document.getElementById('qs-per-day');
+  const qsPeak          = document.getElementById('qs-peak');
+  const qsRatio         = document.getElementById('qs-ratio');
+  const qsAlbums        = document.getElementById('qs-albums');
+  const qsArtists       = document.getElementById('qs-artists');
+  const qsTracks        = document.getElementById('qs-tracks');
 
   const chartSvg     = document.querySelector('.chart-svg');
   const chartWrapper = document.querySelector('.chart-wrapper');
@@ -462,6 +538,8 @@
       metaScrobbles.textContent = '';
     }
 
+    renderStats(albumsR, artistsR, tracksR, countR, periodKey);
+
     try {
       const series = await LastFM.getScrobbleTimeSeries(username, periodKey);
       if (gen !== loadGen) return;
@@ -469,6 +547,7 @@
         chartSvg.innerHTML = buildChartSVG(series);
         currentSeries = series;
       }
+      updateStatsPeak(series);
     } catch {
       // leave skeleton on error
     } finally {

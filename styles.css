@@ -343,3 +343,31 @@ body {
   background: var(--bg);
   padding: 36px 40px;
 }
+
+/* ── Back to top ── */
+.back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 500;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
