@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="overview.css?v=5" />
+  <link rel="stylesheet" href="overview.css?v=6" />
 </head>
 <body>
 
@@ -268,17 +268,26 @@
                     <div class="qs-unique-item">
                       <img src="assets/icon-album.svg" class="qs-unique-icon" alt="" />
                       <p class="qs-tile-label">Unique Albums</p>
-                      <p class="qs-tile-val" id="qs-albums">—</p>
+                      <div class="qs-val-row">
+                        <p class="qs-tile-val" id="qs-albums">—</p>
+                        <span class="qs-delta" id="qs-delta-albums" hidden></span>
+                      </div>
                     </div>
                     <div class="qs-unique-item">
                       <img src="assets/icon-artists.svg" class="qs-unique-icon" alt="" />
                       <p class="qs-tile-label">Unique Artists</p>
-                      <p class="qs-tile-val" id="qs-artists">—</p>
+                      <div class="qs-val-row">
+                        <p class="qs-tile-val" id="qs-artists">—</p>
+                        <span class="qs-delta" id="qs-delta-artists" hidden></span>
+                      </div>
                     </div>
                     <div class="qs-unique-item">
                       <img src="assets/icon-track.svg" class="qs-unique-icon" alt="" />
                       <p class="qs-tile-label">Unique Songs</p>
-                      <p class="qs-tile-val" id="qs-tracks">—</p>
+                      <div class="qs-val-row">
+                        <p class="qs-tile-val" id="qs-tracks">—</p>
+                        <span class="qs-delta" id="qs-delta-tracks" hidden></span>
+                      </div>
                     </div>
                   </div>
                 </div>

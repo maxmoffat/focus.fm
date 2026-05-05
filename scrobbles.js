@@ -35,6 +35,16 @@
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
+  function renderDelta(el, current, prev) {
+    if (prev === null || prev === undefined || current <= 0) { el.hidden = true; return; }
+    const diff = current - prev;
+    if (diff === 0) { el.hidden = true; return; }
+    const dir = diff > 0 ? 'up' : 'down';
+    el.className = `qs-delta qs-delta--${dir}`;
+    el.innerHTML = `<img src="assets/icon-delta-${dir}.svg" class="qs-delta-icon" alt="" /><span>${fmtNum(Math.abs(diff))}</span>`;
+    el.hidden = false;
+  }
+
   function periodDateRange(key) {
     if (key === 'all') return 'All Time';
     const days = { week: 7, month: 30, '3m': 90, '6m': 180, '12m': 365 }[key] || 30;
@@ -48,6 +58,7 @@
 
   const titleEl  = document.getElementById('sc-title');
   const metaEl   = document.getElementById('sc-meta');
+  const deltaEl  = document.getElementById('sc-delta');
   const picker   = document.getElementById('sc-date-picker');
   const btn      = document.getElementById('sc-date-btn');
   const label    = document.getElementById('sc-date-label');
@@ -193,10 +204,20 @@
       totalPages  = Math.max(1, parseInt(attr.totalPages, 10));
 
       if (!countSet) {
-        const total = parseInt(attr.total, 10) || 0;
+        const total        = parseInt(attr.total, 10) || 0;
+        const periodSnapshot = currentPeriod;
         titleEl.textContent = `${fmtNum(total)} scrobbles`;
         metaEl.textContent  = periodDateRange(currentPeriod);
         countSet = true;
+
+        if (currentPeriod !== 'all') {
+          LastFM.getPrevPeriodScrobbleCount(username, currentPeriod)
+            .then(prev => {
+              if (currentPeriod !== periodSnapshot) return;
+              renderDelta(deltaEl, total, prev);
+            })
+            .catch(() => {});
+        }
       }
 
       renderRows(tracks);
@@ -226,6 +247,7 @@
     countSet    = false;
     tbody.innerHTML = '';
     endMsg.hidden   = true;
+    deltaEl.hidden  = true;
     titleEl.innerHTML = '<span class="sc-skel sc-skel--title"></span>';
     metaEl.textContent = periodDateRange(currentPeriod);
     observer.observe(sentinel);

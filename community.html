@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="community.css?v=1" />
 </head>
 <body>
 
@@ -25,6 +26,7 @@
   </header>
 
   <div class="app-shell">
+
     <nav class="sidenav">
       <a class="sidenav-item" data-page="overview" href="overview.html">
         <img src="assets/icon-overview.svg" class="sidenav-icon" alt="" />
@@ -45,10 +47,27 @@
     </nav>
 
     <div class="content-area">
-      <main class="main-content"></main>
-    </div>
-  </div>
+
+      <!-- Sub-header -->
+      <div class="cm-subheader">
+        <div class="cm-subheader-left">
+          <h1 class="cm-title" id="cm-title">&nbsp;</h1>
+          <p class="cm-meta" id="cm-meta">&nbsp;</p>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <main class="main-content">
+        <p class="cm-count" id="cm-count">&nbsp;</p>
+        <div class="cm-grid" id="cm-grid"></div>
+        <div class="cm-sentinel" id="cm-sentinel"></div>
+      </main>
+
+    </div><!-- /content-area -->
+  </div><!-- /app-shell -->
 
   <script src="shell.js"></script>
+  <script src="lastfm.js"></script>
+  <script src="community.js"></script>
 </body>
 </html>

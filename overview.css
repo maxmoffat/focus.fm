@@ -520,6 +520,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .qs-tile-head {
@@ -573,6 +574,44 @@
 .qs-unique-icon {
   width: 32px;
   height: 32px;
+}
+
+/* ── Delta badges ── */
+.qs-val-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qs-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.qs-delta[hidden] {
+  display: none;
+}
+
+.qs-delta--up {
+  background: rgba(35, 217, 35, 0.1);
+  color: #157f15;
+}
+
+.qs-delta--down {
+  background: rgba(217, 35, 35, 0.1);
+  color: #7f1515;
+}
+
+.qs-delta-icon {
+  width: 5px;
+  height: 8px;
+  flex-shrink: 0;
 }
 
 /* ── Skeleton loading ── */

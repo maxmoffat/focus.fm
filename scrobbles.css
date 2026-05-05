@@ -23,6 +23,12 @@
   gap: 10px;
 }
 
+.sc-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .sc-title {
   font-size: 24px;
   font-weight: 900;

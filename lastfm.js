@@ -198,6 +198,48 @@ const LastFM = (() => {
       );
     },
 
+    getFollowers(user, page = 1, limit = 25) {
+      return request('user.getFollowers', { user, page, limit });
+    },
+
+    getFriends(user, page = 1, limit = 25) {
+      return request('user.getFriends', { user, page, limit });
+    },
+
+    async getPrevPeriodScrobbleCount(user, periodKey) {
+      if (periodKey === 'all') return null;
+      const days = PERIOD_DAYS[periodKey] || 30;
+      const to   = Math.floor(Date.now() / 1000) - days * 86400;
+      const from = to - days * 86400;
+      const data = await request('user.getRecentTracks', { user, from, to, limit: 1 });
+      return parseInt(data.recenttracks['@attr'].total, 10) || 0;
+    },
+
+    async getPrevPeriodUniqueCounts(user, periodKey) {
+      if (periodKey === 'all') return null;
+      const days = PERIOD_DAYS[periodKey] || 30;
+      const to   = Math.floor(Date.now() / 1000) - days * 86400;
+      const from = to - days * 86400;
+
+      const [albumsR, artistsR, tracksR] = await Promise.allSettled([
+        request('user.getWeeklyAlbumChart',  { user, from, to }),
+        request('user.getWeeklyArtistChart', { user, from, to }),
+        request('user.getWeeklyTrackChart',  { user, from, to }),
+      ]);
+
+      const count = (r, key, sub) => {
+        if (r.status !== 'fulfilled') return null;
+        const raw = r.value?.[key]?.[sub];
+        return Array.isArray(raw) ? raw.length : raw ? 1 : 0;
+      };
+
+      return {
+        albums:  count(albumsR,  'weeklyalbumchart',  'album'),
+        artists: count(artistsR, 'weeklyartistchart', 'artist'),
+        tracks:  count(tracksR,  'weeklytrackchart',  'track'),
+      };
+    },
+
     periodToTimestamps,
 
     async getAudioDBImage(name) {

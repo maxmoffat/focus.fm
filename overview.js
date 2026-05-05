@@ -48,7 +48,20 @@
     return totalPlays > 0 ? totalDur / totalPlays : 210;
   }
 
-  function renderStats(albumsR, artistsR, tracksR, countR, periodKey) {
+  function renderDelta(el, current, prev) {
+    if (!el || prev === null || prev === undefined || current <= 0) {
+      if (el) el.hidden = true;
+      return;
+    }
+    const diff = current - prev;
+    if (diff === 0) { el.hidden = true; return; }
+    const dir = diff > 0 ? 'up' : 'down';
+    el.className = `qs-delta qs-delta--${dir}`;
+    el.innerHTML = `<img src="assets/icon-delta-${dir}.svg" class="qs-delta-icon" alt="" /><span>${fmtNum(Math.abs(diff))}</span>`;
+    el.hidden = false;
+  }
+
+  function renderStats(albumsR, artistsR, tracksR, countR, periodKey, prevCounts) {
     const scrobbles    = countR.status === 'fulfilled' ? countR.value : 0;
     const days         = PERIOD_DAYS_MAP[periodKey];
     const uniqueAlbums  = albumsR.status  === 'fulfilled' ? parseInt(albumsR.value.topalbums['@attr']?.total,  10) || 0 : 0;
@@ -85,6 +98,12 @@
     if (qsAlbums)  qsAlbums.textContent  = uniqueAlbums  > 0 ? fmtNum(uniqueAlbums)  : '—';
     if (qsArtists) qsArtists.textContent = uniqueArtists > 0 ? fmtNum(uniqueArtists) : '—';
     if (qsTracks)  qsTracks.textContent  = uniqueSongs   > 0 ? fmtNum(uniqueSongs)   : '—';
+
+    // Deltas vs prior period
+    const prev = prevCounts || {};
+    renderDelta(qsDeltaAlbums,  uniqueAlbums,  prev.albums);
+    renderDelta(qsDeltaArtists, uniqueArtists, prev.artists);
+    renderDelta(qsDeltaTracks,  uniqueSongs,   prev.tracks);
   }
 
   function updateStatsPeak(series) {
@@ -125,6 +144,9 @@
   const qsAlbums        = document.getElementById('qs-albums');
   const qsArtists       = document.getElementById('qs-artists');
   const qsTracks        = document.getElementById('qs-tracks');
+  const qsDeltaAlbums   = document.getElementById('qs-delta-albums');
+  const qsDeltaArtists  = document.getElementById('qs-delta-artists');
+  const qsDeltaTracks   = document.getElementById('qs-delta-tracks');
 
   const chartSvg     = document.querySelector('.chart-svg');
   const chartWrapper = document.querySelector('.chart-wrapper');
@@ -515,12 +537,16 @@
     currentSeries = [];
     if (chartSvg) chartSvg.innerHTML = skeletonChartSVG();
     chartLoader.hidden = false;
+    if (qsDeltaAlbums)  qsDeltaAlbums.hidden  = true;
+    if (qsDeltaArtists) qsDeltaArtists.hidden = true;
+    if (qsDeltaTracks)  qsDeltaTracks.hidden  = true;
 
-    const [albumsR, artistsR, tracksR, countR] = await Promise.allSettled([
+    const [albumsR, artistsR, tracksR, countR, prevR] = await Promise.allSettled([
       LastFM.getTopAlbums(username, periodKey),
       LastFM.getTopArtists(username, periodKey),
       LastFM.getTopTracks(username, periodKey),
       LastFM.getScrobbleCount(username, periodKey),
+      LastFM.getPrevPeriodUniqueCounts(username, periodKey),
     ]);
 
     if (albumsR.status  === 'fulfilled') renderAlbums(albumsR.value);
@@ -538,7 +564,8 @@
       metaScrobbles.textContent = '';
     }
 
-    renderStats(albumsR, artistsR, tracksR, countR, periodKey);
+    const prevCounts = prevR.status === 'fulfilled' ? prevR.value : null;
+    renderStats(albumsR, artistsR, tracksR, countR, periodKey, prevCounts);
 
     try {
       const series = await LastFM.getScrobbleTimeSeries(username, periodKey);
