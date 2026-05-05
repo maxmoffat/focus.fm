@@ -371,3 +371,89 @@ body {
   height: 40px;
   display: block;
 }
+
+/* ════════════════════════════════════════
+   DARK THEME
+════════════════════════════════════════ */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --black:    #e8e8e8;
+  --black-75: rgba(232, 232, 232, 0.75);
+  --black-50: rgba(232, 232, 232, 0.5);
+  --black-25: rgba(232, 232, 232, 0.25);
+  --black-10: rgba(232, 232, 232, 0.1);
+  --black-02: rgba(232, 232, 232, 0.04);
+  --white:    #1e1e1e;
+  --bg:       #161616;
+  --border:   rgba(232, 232, 232, 0.1);
+  --red-10:   rgba(217, 35, 35, 0.18);
+}
+
+/* Invert UI chrome icons (chevrons, calendar) so they read as light on dark
+   backgrounds. Active sidenav icons (red) and branded/decorative icons are
+   intentionally excluded. */
+[data-theme="dark"] .sidenav-item:not(.active) .sidenav-icon,
+[data-theme="dark"] .user-chevron,
+[data-theme="dark"] .ov-date-btn-icon,
+[data-theme="dark"] .ov-date-btn-chevron,
+[data-theme="dark"] .banner-arrow {
+  filter: invert(1);
+}
+
+/* Skeleton / placeholder backgrounds */
+[data-theme="dark"] .top5-skel,
+[data-theme="dark"] .top5-skel-bar,
+[data-theme="dark"] .genre-btn-skel,
+[data-theme="dark"] .cm-skel,
+[data-theme="dark"] .cm-skel--line,
+[data-theme="dark"] .sc-skel {
+  background: #333;
+}
+
+[data-theme="dark"] .top5-thumb,
+[data-theme="dark"] .artist-thumb,
+[data-theme="dark"] .sc-thumb {
+  background: #333;
+}
+
+[data-theme="dark"] .sc-loader-dot {
+  background: #555;
+}
+
+/* Table column header subtle fill */
+[data-theme="dark"] .sc-col-head {
+  background: rgba(232, 232, 232, 0.04);
+}
+
+/* Stats tile gradient — bump opacity so it reads on dark card */
+[data-theme="dark"] .qs-tile {
+  background: linear-gradient(to bottom, rgba(217, 35, 35, 0.14), rgba(217, 35, 35, 0.06) 95.548%);
+}
+
+/* Quick Stats tile headings (Listening Time, Unique Listening) */
+[data-theme="dark"] .qs-tile-head {
+  color: #fff;
+}
+
+/* ── Theme toggle button ── */
+.theme-toggle {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--black-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: background 0.1s ease, color 0.1s ease;
+  margin-right: 8px;
+}
+
+.theme-toggle:hover {
+  background: var(--black-10);
+  color: var(--black);
+}

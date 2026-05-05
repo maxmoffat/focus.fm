@@ -127,7 +127,7 @@
   font-size: 14px;
   font-weight: 700;
   font-family: inherit;
-  color: var(--white);
+  color: #fff;
   cursor: pointer;
   transition: opacity 0.15s ease, background 0.15s ease;
   white-space: nowrap;
@@ -239,7 +239,7 @@
 .gg-cell-artist,
 .gg-cell-plays {
   font-size: 12px;
-  color: var(--white);
+  color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
