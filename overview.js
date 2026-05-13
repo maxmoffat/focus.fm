@@ -48,6 +48,11 @@
     return totalPlays > 0 ? totalDur / totalPlays : 210;
   }
 
+  const DELTA_ICONS = {
+    up:   `<svg width="5" height="8" viewBox="0 0 5 8" fill="none" class="qs-delta-icon" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.25677 0.104714C2.39107 -0.034902 2.6088 -0.0349052 2.7431 0.104707L4.89927 2.34617C5.03358 2.48579 5.03358 2.71215 4.89927 2.85177C4.76501 2.9914 4.54723 2.99141 4.41297 2.85179L2.84383 1.2206V7.64248C2.84383 7.83995 2.68987 8 2.49994 8C2.31001 8 2.15605 7.83995 2.15605 7.64248V1.22064L0.587061 2.85179C0.452766 2.9914 0.235025 2.9914 0.100725 2.85179C-0.0335749 2.71217 -0.0335749 2.4858 0.100725 2.34618L2.25677 0.104714Z" fill="currentColor"/></svg>`,
+    down: `<svg width="5" height="8" viewBox="0 0 5 8" fill="none" class="qs-delta-icon" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.25677 7.89529C2.39107 8.0349 2.6088 8.03491 2.7431 7.89529L4.89927 5.65383C5.03358 5.51421 5.03358 5.28785 4.89927 5.14823C4.76501 5.0086 4.54723 5.00859 4.41297 5.14821L2.84383 6.7794V0.357517C2.84383 0.160053 2.68987 -1.7539e-07 2.49994 -1.7539e-07C2.31001 -1.7539e-07 2.15605 0.160053 2.15605 0.357517V6.77936L0.587061 5.14821C0.452766 5.0086 0.235025 5.0086 0.100725 5.14821C-0.0335749 5.28783 -0.0335749 5.5142 0.100725 5.65382L2.25677 7.89529Z" fill="currentColor"/></svg>`,
+  };
+
   function renderDelta(el, current, prev) {
     if (!el || prev === null || prev === undefined || current <= 0) {
       if (el) el.hidden = true;
@@ -57,7 +62,7 @@
     if (diff === 0) { el.hidden = true; return; }
     const dir = diff > 0 ? 'up' : 'down';
     el.className = `qs-delta qs-delta--${dir}`;
-    el.innerHTML = `<img src="assets/icon-delta-${dir}.svg" class="qs-delta-icon" alt="" /><span>${fmtNum(Math.abs(diff))}</span>`;
+    el.innerHTML = `${DELTA_ICONS[dir]}<span>${fmtNum(Math.abs(diff))}</span>`;
     el.hidden = false;
   }
 

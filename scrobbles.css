@@ -232,3 +232,35 @@
   color: var(--black-50);
   border-top: 1px solid var(--border);
 }
+
+/* ════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* ── Sub-header: single column, auto height ── */
+  .sc-subheader {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  /* Date picker full width (reuse ov-date-* classes) */
+  .sc-subheader .ov-date-picker { width: 100%; }
+  .sc-subheader .ov-date-btn    { width: 100%; }
+  .sc-subheader .ov-date-menu   { width: 100%; left: 0; right: 0; }
+
+  /* ── Table: horizontal scroll within normal page padding ── */
+  .sc-card {
+    overflow-x: auto;
+  }
+
+  /* Force a minimum width so rows don't collapse and trigger scroll */
+  .sc-col-head,
+  .sc-row {
+    min-width: 540px;
+  }
+}

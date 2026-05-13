@@ -60,4 +60,103 @@ if (!username) {
 
   const topbarUser = document.querySelector('.topbar-user');
   topbarUser.insertBefore(themeBtn, topbarUser.firstChild);
+
+  // ── Mobile nav ─────────────────────────────────────────────────────────────
+
+  const HAMBURGER_SVG = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+  const CLOSE_SVG     = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+  const PAGE_NAMES = { overview: 'Overview', scrobbles: 'Scrobbles', 'grid-generator': 'Grid Generator', community: 'Community' };
+  const PAGE_HREFS = { overview: 'overview.html', scrobbles: 'scrobbles.html', 'grid-generator': 'grid-generator.html', community: 'community.html' };
+
+  // Hamburger button — prepended as first child of topbar
+  const hamburger = document.createElement('button');
+  hamburger.className = 'mob-hamburger';
+  hamburger.setAttribute('aria-label', 'Open menu');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.innerHTML = HAMBURGER_SVG;
+  document.querySelector('.topbar').prepend(hamburger);
+
+  // Mobile topbar center: "focus.fm" + page name
+  const mobCenter = document.createElement('div');
+  mobCenter.className = 'mob-topbar-center';
+  mobCenter.innerHTML = `<span class="mob-brand-text"><span class="mob-brand-red">focus</span>.fm</span><span class="mob-page-name">${PAGE_NAMES[page] || ''}</span>`;
+  topbarUser.parentElement.insertBefore(mobCenter, topbarUser);
+
+  // Build nav links from the same icons map used for the sidenav
+  const navHTML = Object.keys(icons).map(key => {
+    const isActive = key === page;
+    return `<a class="mob-nav-item${isActive ? ' active' : ''}" href="${PAGE_HREFS[key]}" data-page="${key}">
+      <img class="mob-nav-icon" src="${icons[key][isActive ? 'active' : 'default']}" alt="" />
+      <span>${PAGE_NAMES[key]}</span>
+    </a>`;
+  }).join('');
+
+  // Mobile menu overlay
+  const mobMenu = document.createElement('div');
+  mobMenu.className = 'mob-menu';
+  mobMenu.setAttribute('aria-hidden', 'true');
+  mobMenu.innerHTML = `
+    <div class="mob-backdrop" id="mob-backdrop"></div>
+    <div class="mob-panel">
+      <div class="mob-panel-head">
+        <div class="mob-head-logos">
+          <span class="mob-brand-text"><span class="mob-brand-red">focus</span>.fm</span>
+          <span class="mob-logo-sep"></span>
+          <img src="assets/icon-logo-mark.svg" alt="" class="mob-lastfm-logo" />
+        </div>
+        <button class="mob-close" id="mob-close" aria-label="Close menu">${CLOSE_SVG}</button>
+      </div>
+      <nav class="mob-nav">${navHTML}</nav>
+      <div class="mob-panel-foot">
+        <div class="mob-foot-theme">
+          <span class="mob-foot-label">Appearance</span>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(mobMenu);
+
+  // Mobile theme toggle — separate button wired to the same theme state
+  const mobThemeBtn = document.createElement('button');
+  mobThemeBtn.className = 'theme-toggle';
+  mobThemeBtn.setAttribute('aria-label', 'Toggle dark mode');
+
+  function syncMobThemeIcon() {
+    mobThemeBtn.innerHTML = document.documentElement.getAttribute('data-theme') === 'dark' ? SUN_SVG : MOON_SVG;
+  }
+  syncMobThemeIcon();
+
+  mobThemeBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    syncThemeIcon();
+    syncMobThemeIcon();
+  });
+
+  // Keep mobile icon in sync when desktop button is clicked
+  themeBtn.addEventListener('click', syncMobThemeIcon);
+
+  mobMenu.querySelector('.mob-foot-theme').appendChild(mobThemeBtn);
+
+  // Open / close
+  function openMobMenu() {
+    mobMenu.classList.add('mob-menu--open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobMenu.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobMenu() {
+    mobMenu.classList.remove('mob-menu--open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openMobMenu);
+  document.getElementById('mob-backdrop').addEventListener('click', closeMobMenu);
+  document.getElementById('mob-close').addEventListener('click', closeMobMenu);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobMenu(); });
 }

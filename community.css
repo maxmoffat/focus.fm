@@ -195,3 +195,19 @@
   height: 1px;
   margin-top: 24px;
 }
+
+/* ════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  .cm-subheader {
+    padding: 20px 16px 16px;
+  }
+
+  /* Friend cards: single column */
+  .cm-grid {
+    grid-template-columns: 1fr;
+  }
+}

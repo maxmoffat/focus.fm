@@ -394,6 +394,7 @@ body {
    backgrounds. Active sidenav icons (red) and branded/decorative icons are
    intentionally excluded. */
 [data-theme="dark"] .sidenav-item:not(.active) .sidenav-icon,
+[data-theme="dark"] .mob-nav-item:not(.active) .mob-nav-icon,
 [data-theme="dark"] .user-chevron,
 [data-theme="dark"] .ov-date-btn-icon,
 [data-theme="dark"] .ov-date-btn-chevron,
@@ -436,6 +437,17 @@ body {
   color: #fff;
 }
 
+/* Delta badges — 25% opacity bg, vivid icon + text */
+[data-theme="dark"] .qs-delta--up {
+  background: rgba(35, 217, 35, 0.25);
+  color: #23d923;
+}
+
+[data-theme="dark"] .qs-delta--down {
+  background: rgba(217, 35, 35, 0.25);
+  color: #d92323;
+}
+
 /* ── Theme toggle button ── */
 .theme-toggle {
   width: 32px;
@@ -456,4 +468,281 @@ body {
 .theme-toggle:hover {
   background: var(--black-10);
   color: var(--black);
+}
+
+/* ════════════════════════════════════════
+   MOBILE SHELL
+════════════════════════════════════════ */
+
+/* ── Hamburger button (hidden on desktop) ── */
+.mob-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--black);
+  border-radius: 4px;
+  flex-shrink: 0;
+  padding: 0;
+  transition: background 0.1s ease;
+}
+
+.mob-hamburger:hover {
+  background: var(--black-10);
+}
+
+/* ── Mobile topbar center (hidden on desktop) ── */
+.mob-topbar-center {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.mob-brand-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1;
+}
+
+.mob-brand-red {
+  color: var(--red);
+}
+
+.mob-page-name {
+  font-size: 10px;
+  color: var(--black-50);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Full-screen slide-in menu ── */
+.mob-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+}
+
+.mob-menu--open {
+  pointer-events: auto;
+}
+
+.mob-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.mob-menu--open .mob-backdrop {
+  opacity: 1;
+}
+
+.mob-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  max-width: 85vw;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+
+.mob-menu--open .mob-panel {
+  transform: translateX(0);
+}
+
+.mob-panel-head {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.mob-head-logos {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mob-close {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.1s ease;
+  flex-shrink: 0;
+}
+
+.mob-close:hover {
+  background: var(--black-10);
+}
+
+.mob-nav {
+  flex: 1;
+  padding: 8px;
+  overflow-y: auto;
+}
+
+.mob-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--black);
+  opacity: 0.75;
+  transition: background 0.1s ease, opacity 0.1s ease;
+}
+
+.mob-nav-item.active {
+  background: var(--red-10);
+  color: var(--red);
+  opacity: 1;
+  font-weight: 700;
+}
+
+.mob-nav-item:not(.active):hover {
+  background: var(--black-02);
+  opacity: 1;
+}
+
+.mob-nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.mob-panel-foot {
+  border-top: 1px solid var(--border);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.mob-foot-theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mob-foot-label {
+  font-size: 12px;
+  color: var(--black-50);
+}
+
+.mob-foot-logos {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mob-logomark {
+  width: 28px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.mob-logo-sep {
+  width: 1px;
+  height: 16px;
+  background: var(--black-25);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+.mob-lastfm-logo {
+  height: 16px;
+  width: 32px;
+  flex-shrink: 0;
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* ── Topbar: 3-column grid ── */
+  .topbar {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .topbar-brand { display: none; }
+
+  .mob-hamburger { display: flex; }
+
+  .mob-topbar-center { display: flex; }
+
+  .topbar-user { gap: 0; }
+
+  .user-name,
+  .user-chevron { display: none; }
+
+  /* Theme toggle moves to mobile menu */
+  .topbar-user .theme-toggle { display: none; }
+
+  /* ── Sidebar ── */
+  .sidenav { display: none; }
+
+  /* ── Content area fills full width ── */
+  .content-area { margin-left: 0; }
+
+  /* ── Main content tighter padding ── */
+  .main-content { padding: 24px 16px; }
+
+  /* ── Back to top closer to edge ── */
+  .back-to-top {
+    right: 16px;
+    bottom: 20px;
+  }
+
+  /* ── Login card fluid width ── */
+  .login-card {
+    width: calc(100vw - 32px);
+    max-width: 400px;
+    padding: 28px 20px;
+  }
+
+  #login-page { padding: 24px 0 80px; }
+}
+
+/* Hide mob-menu entirely on desktop */
+@media (min-width: 769px) {
+  .mob-menu { display: none; }
 }

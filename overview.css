@@ -710,3 +710,75 @@
   font-size: 13px;
   color: #b00020;
 }
+
+/* ════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* ── Sub-header: single column, auto height ── */
+  .ov-subheader {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .ov-subheader-right { width: 100%; }
+
+  /* Date picker full width */
+  .ov-date-picker { width: 100%; }
+  .ov-date-btn    { width: 100%; }
+  .ov-date-menu   { width: 100%; left: 0; right: 0; }
+
+  /* ── Top-5 row: single column ── */
+  .ov-content > .ov-row:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ov-card.top5-card {
+    height: auto;
+  }
+
+  .top5-list {
+    overflow-y: visible;
+    max-height: none;
+  }
+
+  /* ── Banner: compact ── */
+  .ov-banner {
+    height: auto;
+    padding: 16px;
+  }
+
+  .banner-sub { display: none; }
+
+  /* ── Listening Trend: hide axis labels, let line scale ── */
+  .chart-svg text { display: none; }
+  .chart-wrapper  { padding: 0 16px 16px; }
+
+  /* ── Bottom row: single column ── */
+  .ov-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ov-card.artists-card,
+  .ov-card.stats-card {
+    height: auto;
+    flex: none;
+  }
+
+  .artist-list  { overflow-y: visible; }
+  .stats-inner  { overflow-y: visible; }
+
+  /* ── Quick Stats: all tiles stacked ── */
+  .qs-row          { flex-direction: column; }
+  .qs-col          { flex-direction: column; }
+  .qs-tile--lg     { min-height: auto; }
+  .qs-unique-grid  { flex-direction: column; gap: 16px; }
+}

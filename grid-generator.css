@@ -254,3 +254,42 @@
 .gg-cell-plays {
   font-weight: 400;
 }
+
+/* ════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  .gg-subheader {
+    padding: 24px 16px;
+  }
+
+  .gg-desc {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  /* Form fields stack vertically */
+  .gg-form-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .gg-field { width: 100%; }
+
+  /* Date/size pickers full width */
+  .gg-field .ov-date-btn  { width: 100%; }
+  .gg-field .ov-date-menu { width: 100%; left: 0; right: 0; }
+
+  /* Toggles wrap instead of overflow */
+  .gg-toggles {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .gg-download-bar { padding: 24px 16px 0; }
+  .gg-grid         { padding: 16px; }
+}
