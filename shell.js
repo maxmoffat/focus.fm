@@ -2,7 +2,8 @@
 const _savedTheme = localStorage.getItem('theme');
 if (_savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
 
-const username = sessionStorage.getItem('lfm_username');
+const _session  = JSON.parse(localStorage.getItem('lfm_session') || 'null');
+const username  = _session?.name;
 if (!username) {
   window.location.replace('index.html');
 } else {
@@ -60,6 +61,25 @@ if (!username) {
 
   const topbarUser = document.querySelector('.topbar-user');
   topbarUser.insertBefore(themeBtn, topbarUser.firstChild);
+
+  // ── Logout dropdown ────────────────────────────────────────────────────────
+  const dropdown   = document.createElement('div');
+  dropdown.className = 'user-dropdown';
+  const logoutBtn  = document.createElement('button');
+  logoutBtn.className = 'user-dropdown-btn';
+  logoutBtn.textContent = 'Sign out';
+  logoutBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    localStorage.removeItem('lfm_session');
+    window.location.replace('index.html');
+  });
+  dropdown.appendChild(logoutBtn);
+  topbarUser.appendChild(dropdown);
+
+  topbarUser.addEventListener('click', () => dropdown.classList.toggle('open'));
+  document.addEventListener('click', e => {
+    if (!topbarUser.contains(e.target)) dropdown.classList.remove('open');
+  });
 
   // ── Mobile nav ─────────────────────────────────────────────────────────────
 

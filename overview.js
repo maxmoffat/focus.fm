@@ -176,7 +176,7 @@
     '6m': '6 Months', '12m': '12 Months', all: 'All Time',
   };
 
-  const username = sessionStorage.getItem('lfm_username');
+  const username = JSON.parse(localStorage.getItem('lfm_session') || 'null')?.name;
 
   // ── Sub-header username ───────────────────────────────────────────────────
 

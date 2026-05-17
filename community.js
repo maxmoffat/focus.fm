@@ -59,7 +59,7 @@
   const cmGrid     = document.getElementById('cm-grid');
   const cmSentinel = document.getElementById('cm-sentinel');
 
-  const username = sessionStorage.getItem('lfm_username');
+  const username = JSON.parse(localStorage.getItem('lfm_session') || 'null')?.name;
 
   let currentPage = 1;
   let totalPages  = 1;

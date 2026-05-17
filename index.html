@@ -17,24 +17,15 @@
     <div class="login-content">
       <div class="login-card">
         <p class="login-instructions">
-          To get started with focus.fm, <strong>enter your last.fm username below</strong> and click &ldquo;Continue&rdquo;.
+          Sign in with your last.fm account to continue with focus.fm.
         </p>
 
-        <form id="login-form" novalidate>
-          <input
-            id="username-input"
-            class="login-input"
-            type="text"
-            placeholder="Your last.fm username"
-            autocomplete="off"
-            autocorrect="off"
-            autocapitalize="off"
-            spellcheck="false"
-          />
-          <button id="continue-btn" class="login-btn" type="submit" disabled>
-            Continue
+        <div id="login-form">
+          <button id="login-btn" class="login-btn" type="button">
+            Login with Last.fm
           </button>
-        </form>
+          <p id="login-status" class="login-status" hidden></p>
+        </div>
 
         <p class="login-signup">
           Don&rsquo;t have a last.fm account?
@@ -55,6 +46,7 @@
 
   </div>
 
+  <script src="lastfm.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
