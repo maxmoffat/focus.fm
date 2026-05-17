@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Spinning vinyl record">
+  <defs>
+    <radialGradient id="vinylShade" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2a2a"/>
+      <stop offset="55%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="discClip">
+      <circle cx="100" cy="100" r="92"/>
+    </clipPath>
+  </defs>
+
+  <g style="transform-origin: 100px 100px; transform-box: fill-box;">
+    <circle cx="100" cy="100" r="92" fill="url(#vinylShade)"/>
+    <g fill="none" stroke="#333" stroke-width="0.6" opacity="0.55">
+      <circle cx="100" cy="100" r="86"/>
+      <circle cx="100" cy="100" r="80"/>
+      <circle cx="100" cy="100" r="74"/>
+      <circle cx="100" cy="100" r="68"/>
+      <circle cx="100" cy="100" r="62"/>
+      <circle cx="100" cy="100" r="56"/>
+      <circle cx="100" cy="100" r="50"/>
+      <circle cx="100" cy="100" r="44"/>
+      <circle cx="100" cy="100" r="38"/>
+    </g>
+    <g clip-path="url(#discClip)">
+      <rect x="0" y="0" width="200" height="200" fill="url(#sheen)"/>
+    </g>
+    <circle cx="100" cy="100" r="30" fill="#c0392b"/>
+    <circle cx="100" cy="100" r="30" fill="none" stroke="#000" stroke-width="0.6" opacity="0.4"/>
+    <circle cx="100" cy="100" r="22" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.35"/>
+    <rect x="99" y="74" width="2" height="8" fill="#ffffff" opacity="0.85"/>
+    <circle cx="100" cy="100" r="2.2" fill="#000"/>
+  </g>
+
+  <ellipse cx="70" cy="55" rx="28" ry="6" fill="#ffffff" opacity="0.05"/>
+
+  <style>
+    svg > g {
+      animation: spin 3s linear infinite;
+      transform-origin: 100px 100px;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      svg > g { animation: none; }
+    }
+  </style>
+</svg>

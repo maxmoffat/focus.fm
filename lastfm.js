@@ -245,6 +245,17 @@ const LastFM = (() => {
       return request('user.getTopTracks', { user, period: PERIOD[periodKey] || periodKey, limit });
     },
 
+    async getNowPlaying(user) {
+      const data  = await request('user.getRecentTracks', { user, limit: 1 });
+      const raw   = data.recenttracks?.track;
+      const track = Array.isArray(raw) ? raw[0] : raw;
+      if (!track || track['@attr']?.nowplaying !== 'true') return null;
+      return {
+        name:   track.name || '',
+        artist: track.artist?.['#text'] || track.artist?.name || '',
+      };
+    },
+
     getRecentTracks(user, periodKey, page = 1, limit = 50) {
       const ts = periodToTimestamps(periodKey);
       return request('user.getRecentTracks', { user, limit, page, ...ts });

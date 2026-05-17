@@ -36,6 +36,49 @@
   line-height: 1;
 }
 
+/* ── Now Playing callout (inside card) ── */
+.cm-np-callout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--green-10);
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin-top: 16px;
+  min-height: 56px;
+}
+
+.cm-np-vinyl {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.cm-np-callout-label {
+  font-size: 8px;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.cm-np-callout-track {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green-dark);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="dark"] .cm-np-callout {
+  background: rgba(74, 222, 128, 0.08);
+}
+
+[data-theme="dark"] .cm-np-callout-track {
+  color: #4ade80;
+}
+
 /* ── Count label ── */
 .cm-count {
   font-size: 16px;
@@ -175,6 +218,35 @@
   border-radius: 4px;
   background: #e0e0e0;
   animation: cm-pulse 1.4s ease-in-out infinite;
+}
+
+/* ── Truncation tooltip ── */
+.cm-tooltip {
+  position: fixed;
+  z-index: 500;
+  background: var(--black);
+  color: var(--white);
+  font-size: 12px;
+  font-family: inherit;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  padding: 7px 12px;
+  border-radius: 6px;
+  max-width: 220px;
+  white-space: normal;
+  word-break: break-word;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+.cm-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: var(--arrow-left, 50%);
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--black);
 }
 
 /* ── Empty / error states ── */

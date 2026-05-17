@@ -1,6 +1,6 @@
 // Apply saved theme immediately to avoid flash
 const _savedTheme = localStorage.getItem('theme');
-if (_savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+if (_savedTheme !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
 
 const _session  = JSON.parse(localStorage.getItem('lfm_session') || 'null');
 const username  = _session?.name;
@@ -67,7 +67,7 @@ if (!username) {
   dropdown.className = 'user-dropdown';
   const logoutBtn  = document.createElement('button');
   logoutBtn.className = 'user-dropdown-btn';
-  logoutBtn.textContent = 'Sign out';
+  logoutBtn.innerHTML = '<img src="assets/icon-logout.svg" alt="" /><span>Logout</span>';
   logoutBtn.addEventListener('click', e => {
     e.stopPropagation();
     localStorage.removeItem('lfm_session');

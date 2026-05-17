@@ -96,7 +96,7 @@
     return card;
   }
 
-  function buildCardHtml(user, { artist, album, track }) {
+  function buildCardHtml(user, { artist, album, track, nowPlaying }) {
     const img      = getImg(user.image, 'large');
     const regTs    = getRegisteredTs(user);
     const joinDate = fmtJoinDate(regTs);
@@ -113,6 +113,15 @@
       ? esc(track.name) + (track.artist?.name ? ' – ' + esc(track.artist.name) : '')
       : '—';
 
+    const npHtml = nowPlaying ? `
+      <div class="cm-np-callout">
+        <img src="assets/vinyl-spinning.svg" class="cm-np-vinyl" alt="" aria-hidden="true" />
+        <div>
+          <p class="cm-np-callout-label">Currently Listening</p>
+          <p class="cm-np-callout-track">${esc(nowPlaying.name)}${nowPlaying.artist ? ' – ' + esc(nowPlaying.artist) : ''}</p>
+        </div>
+      </div>` : '';
+
     return `
       <div class="cm-card">
         <div class="cm-card-top">
@@ -126,34 +135,37 @@
         <div class="cm-divider"></div>
         <div class="cm-stats">
           <div class="cm-stat">
-            <p class="cm-stat-label">Top Album</p>
-            <p class="cm-stat-val">${albumVal}</p>
+            <p class="cm-stat-label">All Time Top Album</p>
+            <p class="cm-stat-val" data-tooltip="${albumVal}">${albumVal}</p>
           </div>
           <div class="cm-stat">
-            <p class="cm-stat-label">Top Artist</p>
-            <p class="cm-stat-val">${esc(artistVal)}</p>
+            <p class="cm-stat-label">All Time Top Artist</p>
+            <p class="cm-stat-val" data-tooltip="${esc(artistVal)}">${esc(artistVal)}</p>
           </div>
           <div class="cm-stat">
-            <p class="cm-stat-label">Top Track</p>
-            <p class="cm-stat-val">${trackVal}</p>
+            <p class="cm-stat-label">All Time Top Track</p>
+            <p class="cm-stat-val" data-tooltip="${trackVal}">${trackVal}</p>
           </div>
         </div>
+        ${npHtml}
       </div>`;
   }
 
   async function enrichCard(cardEl, user, gen) {
-    const [artistR, albumR, trackR] = await Promise.allSettled([
+    const [artistR, albumR, trackR, nowPlayingR] = await Promise.allSettled([
       LastFM.getTopArtists(user.name, 'all', 1),
       LastFM.getTopAlbums(user.name, 'all', 1),
       LastFM.getTopTracks(user.name, 'all', 1),
+      LastFM.getNowPlaying(user.name),
     ]);
 
     if (gen !== loadGen || !cardEl.isConnected) return;
 
     const html = buildCardHtml(user, {
-      artist: firstItem(artistR, 'topartists', 'artist'),
-      album:  firstItem(albumR,  'topalbums',  'album'),
-      track:  firstItem(trackR,  'toptracks',  'track'),
+      artist:     firstItem(artistR, 'topartists', 'artist'),
+      album:      firstItem(albumR,  'topalbums',  'album'),
+      track:      firstItem(trackR,  'toptracks',  'track'),
+      nowPlaying: nowPlayingR.status === 'fulfilled' ? nowPlayingR.value : null,
     });
 
     cardEl.outerHTML = html;
@@ -204,6 +216,42 @@
     } finally {
       if (gen === loadGen) loading = false;
     }
+  }
+
+  // ── Truncation tooltip ────────────────────────────────────────────────────
+  const tooltip = document.createElement('div');
+  tooltip.className = 'cm-tooltip';
+  tooltip.setAttribute('aria-hidden', 'true');
+  tooltip.hidden = true;
+  document.body.appendChild(tooltip);
+
+  function positionTooltip(el) {
+    const r  = el.getBoundingClientRect();
+    const tr = tooltip.getBoundingClientRect();
+    let left = r.left + r.width / 2 - tr.width / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - tr.width - 8));
+    const top = r.top - tr.height - 10;
+    const arrowLeft = Math.max(10, Math.min(r.left + r.width / 2 - left, tr.width - 10));
+    tooltip.style.left = left + 'px';
+    tooltip.style.top  = top + 'px';
+    tooltip.style.setProperty('--arrow-left', arrowLeft + 'px');
+  }
+
+  if (cmGrid) {
+    cmGrid.addEventListener('mouseover', e => {
+      const val = e.target.closest('.cm-stat-val');
+      if (!val || val.contains(e.relatedTarget)) return;
+      if (val.scrollWidth <= val.offsetWidth) return;
+      tooltip.textContent = val.dataset.tooltip || val.textContent;
+      tooltip.style.visibility = 'hidden';
+      tooltip.hidden = false;
+      positionTooltip(val);
+      tooltip.style.visibility = 'visible';
+    });
+    cmGrid.addEventListener('mouseout', e => {
+      const val = e.target.closest('.cm-stat-val');
+      if (val && !val.contains(e.relatedTarget)) tooltip.hidden = true;
+    });
   }
 
   const observer = new IntersectionObserver((entries) => {
